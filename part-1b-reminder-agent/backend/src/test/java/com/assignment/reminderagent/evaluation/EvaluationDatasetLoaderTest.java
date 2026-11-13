@@ -8,10 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.assignment.reminderagent.evaluation.model.EvaluationCase;
 import com.assignment.reminderagent.evaluation.model.EvaluationCase.Kind;
 import com.assignment.reminderagent.evaluation.model.EvaluationCase.ScoreDimension;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.List;
@@ -25,14 +21,10 @@ class EvaluationDatasetLoaderTest {
   private static final Path DATASET_PATH =
       Path.of("..", "harness", "config", "evaluation-cases.json");
 
-  private final ObjectMapper objectMapper = new ObjectMapper();
-
   @Test
-  void loadsAllTwentyNineStableCasesWithTraceabilityAndExplicitApplicability() throws IOException {
-    assertTrue(Files.isRegularFile(DATASET_PATH), "Evaluation dataset file must exist");
-    List<EvaluationCase> cases =
-        objectMapper.readValue(
-            Files.readString(DATASET_PATH), new TypeReference<List<EvaluationCase>>() {});
+  void loadsAllTwentyNineStableCasesWithTraceabilityAndExplicitApplicability() {
+    List<EvaluationCase> cases = new EvaluationDatasetLoader(new com.fasterxml.jackson.databind.ObjectMapper())
+        .load(DATASET_PATH);
     List<String> expectedIds =
         IntStream.rangeClosed(1, 29).mapToObj(index -> "E%02d".formatted(index)).toList();
     List<String> actualIds = cases.stream().map(EvaluationCase::id).toList();

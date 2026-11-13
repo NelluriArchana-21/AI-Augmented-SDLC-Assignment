@@ -1,0 +1,18 @@
+{
+  "validation_id": "validation-20261113T112508Z",
+  "completed_at": "2026-11-13T11:25:08Z",
+  "command": "mvn -f part-1b-reminder-agent/backend/pom.xml -Dlogging.level.root=ERROR test",
+  "status": "PASS",
+  "tests": {
+    "run": 75,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "provider_calls": 0,
+  "full_evaluation_performed": false,
+  "notes": [
+    "Integration tests used fake provider transports.",
+    "This validation is not a live-provider smoke test or evaluation acceptance result."
+  ]
+}

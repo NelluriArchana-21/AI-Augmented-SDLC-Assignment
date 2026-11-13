@@ -16,6 +16,7 @@ public record EvaluationRunRecord(
     @JsonProperty("structural_compliance_percent") BigDecimal structuralCompliancePercent,
     @JsonProperty("invariant_failure_count") int invariantFailureCount,
     @JsonProperty("unresolved_operational_failure_count") int unresolvedOperationalFailureCount,
+    @JsonProperty("complete") boolean complete,
     @JsonProperty("accepted") boolean accepted,
     @JsonProperty("reevaluation_of_run_id") String reevaluationOfRunId,
     @JsonProperty("repair_links") List<String> repairLinks) {

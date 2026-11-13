@@ -52,10 +52,15 @@ public final class GeminiProviderAdapter implements ReminderExtractionProvider {
 
   @Override
   public ProviderResult extract(String trustedInstructions, String untrustedRequest) {
+    return extractWithAttempts(trustedInstructions, untrustedRequest).result();
+  }
+
+  @Override
+  public Invocation extractWithAttempts(String trustedInstructions, String untrustedRequest) {
     String apiKey = properties.getApiKey();
     String modelId = properties.getModelId();
     if (apiKey == null || apiKey.isBlank() || modelId == null || modelId.isBlank()) {
-      return new OperationalFailure(FailureCategory.CONFIGURATION);
+      return new Invocation(new OperationalFailure(FailureCategory.CONFIGURATION), java.util.List.of());
     }
 
     URI uri =
@@ -69,7 +74,9 @@ public final class GeminiProviderAdapter implements ReminderExtractionProvider {
             "Content-Type", "application/json",
             ReminderAgentProperties.API_KEY_HEADER, apiKey);
 
-    return retryPolicy.execute(timeout -> send(uri, headers, body, timeout));
+    ProviderRetryPolicy.ExecutionResult execution =
+        retryPolicy.executeWithAttempts(timeout -> send(uri, headers, body, timeout));
+    return new Invocation(execution.result(), execution.attempts());
   }
 
   private ProviderResult send(

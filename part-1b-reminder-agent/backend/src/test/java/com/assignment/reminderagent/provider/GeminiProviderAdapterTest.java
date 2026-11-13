@@ -69,6 +69,21 @@ class GeminiProviderAdapterTest {
   }
 
   @Test
+  void mapsPermanentClientErrorsToConfigurationFailureWithoutRetrying() {
+    var transport =
+        new FakeProviderTransport(
+            List.of(
+                new FakeProviderTransport.Response(400, "redacted"),
+                new FakeProviderTransport.Response(200, "{}")));
+
+    ProviderResult result = adapter(properties(API_KEY, "configured-model"), transport)
+        .extract("trusted", "untrusted");
+
+    assertEquals(new OperationalFailure(FailureCategory.CONFIGURATION), result);
+    assertEquals(1, transport.requests().size());
+  }
+
+  @Test
   void malformedCompletionIsReturnedUnchangedWithoutRetry() {
     String malformed = "{";
     var transport = successfulTransport(malformed);
@@ -118,6 +133,31 @@ class GeminiProviderAdapterTest {
     assertEquals(new OperationalFailure(FailureCategory.AUTHENTICATION), result);
     assertEquals(2, transport.requests().size());
     assertEquals(List.of(Duration.ofSeconds(1)), sleeps);
+  }
+
+  @Test
+  void retriesNetworkFailureThroughTheFakeTransport() {
+    String responseBody =
+        """
+        {"candidates":[{"content":{"parts":[{"text":%s}]}}]}
+        """
+            .formatted(new ObjectMapper().valueToTree(COMPLETION).toString());
+    var transport =
+        new FakeProviderTransport(
+            List.of(
+                new FakeProviderTransport.NetworkFailure(),
+                new FakeProviderTransport.Response(200, responseBody)));
+    var sleeps = new java.util.ArrayList<Duration>();
+    var policy = new ProviderRetryPolicy(sleeps::add, () -> 0L);
+
+    ProviderResult result =
+        adapter(properties(API_KEY, "configured-model"), transport, policy)
+            .extract("trusted", "untrusted");
+
+    assertEquals(new Success(COMPLETION), result);
+    assertEquals(2, transport.requests().size());
+    assertEquals(List.of(Duration.ofSeconds(1)), sleeps);
+    assertTrue(transport.requests().stream().allMatch(request -> request.timeout().equals(Duration.ofSeconds(20))));
   }
 
   @Test

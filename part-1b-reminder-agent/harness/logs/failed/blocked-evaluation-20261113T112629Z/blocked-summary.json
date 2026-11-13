@@ -1,0 +1,16 @@
+{
+  "run_id": "blocked-evaluation-20261113T112629Z",
+  "recorded_at": "2026-11-13T11:26:29Z",
+  "status": "BLOCKED",
+  "reason": "Required provider credentials and model configuration were absent.",
+  "required_configuration_present": {
+    "GEMINI_API_KEY": false,
+    "REMINDER_AGENT_MODEL": false
+  },
+  "command": "env -u GEMINI_API_KEY -u REMINDER_AGENT_MODEL bash part-1b-reminder-agent/harness/scripts/run-evaluation.sh",
+  "command_exit_code": 2,
+  "evaluation_started": false,
+  "case_results_recorded": 0,
+  "provider_calls": 0,
+  "note": "No model-quality evaluation or isolated probe run was started; no evaluation result or acceptance is claimed."
+}

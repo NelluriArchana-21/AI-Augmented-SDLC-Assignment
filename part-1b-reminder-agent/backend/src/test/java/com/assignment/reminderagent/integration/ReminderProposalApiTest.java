@@ -46,6 +46,7 @@ class ReminderProposalApiTest {
 
   @Test
   void validatesRequestsAndKeepsProviderFailuresSeparateFromClarifications() throws Exception {
+    int initialRequests = fakeTransport.requests().size();
     MvcResult createResult =
         mockMvc
             .perform(
@@ -66,7 +67,7 @@ class ReminderProposalApiTest {
         keys(create));
     assertEquals("CREATE", create.path("intent").textValue());
     assertEquals("2026-01-16", create.path("date").textValue());
-    assertEquals(1, fakeTransport.requests().size());
+    assertEquals(initialRequests + 1, fakeTransport.requests().size());
 
     JsonNode mistypedContext =
         response(
@@ -81,7 +82,7 @@ class ReminderProposalApiTest {
                 .andExpect(status().isOk())
                 .andReturn());
     assertEquals("CLARIFY", mistypedContext.path("intent").textValue());
-    assertEquals(1, fakeTransport.requests().size());
+    assertEquals(initialRequests + 1, fakeTransport.requests().size());
 
     JsonNode malformedRequest =
         response(
@@ -96,7 +97,7 @@ class ReminderProposalApiTest {
     assertTrue(malformedRequest.path("task").isNull());
     assertTrue(malformedRequest.path("date").isNull());
     assertTrue(malformedRequest.path("time").isNull());
-    assertEquals(1, fakeTransport.requests().size());
+    assertEquals(initialRequests + 1, fakeTransport.requests().size());
 
     JsonNode missingTime =
         response(
@@ -109,7 +110,7 @@ class ReminderProposalApiTest {
                 .andReturn());
     assertEquals("CLARIFY", missingTime.path("intent").textValue());
     assertTrue(missingTime.path("time").isNull());
-    assertEquals(2, fakeTransport.requests().size());
+    assertEquals(initialRequests + 2, fakeTransport.requests().size());
 
     MvcResult malformedProviderResult =
         mockMvc
@@ -124,7 +125,7 @@ class ReminderProposalApiTest {
         objectMapper
             .readTree(malformedProviderResult.getResponse().getContentAsString())
             .has("intent"));
-    assertEquals(3, fakeTransport.requests().size());
+    assertEquals(initialRequests + 3, fakeTransport.requests().size());
 
     MvcResult invalidDateResult =
         mockMvc
@@ -139,7 +140,7 @@ class ReminderProposalApiTest {
         objectMapper
             .readTree(invalidDateResult.getResponse().getContentAsString())
             .has("intent"));
-    assertEquals(4, fakeTransport.requests().size());
+    assertEquals(initialRequests + 4, fakeTransport.requests().size());
 
     MvcResult providerFailure =
         mockMvc
@@ -153,11 +154,119 @@ class ReminderProposalApiTest {
     String failureBody = providerFailure.getResponse().getContentAsString();
     assertFalse(failureBody.contains("test-only-api-key"));
     assertFalse(objectMapper.readTree(failureBody).has("intent"));
-    assertEquals(5, fakeTransport.requests().size());
+    assertEquals(initialRequests + 5, fakeTransport.requests().size());
+  }
+
+  @Test
+  void coversBoundaryAndAmbiguousUs1RequestsAndRejectsInvalidContextBeforeProviderInvocation()
+      throws Exception {
+    int initialRequests = fakeTransport.requests().size();
+
+    assertProposal(
+        postProposal(
+            request(
+                "Remind me to submit the report on January 20, 2026 at 3:30 PM.",
+                "2026-01-15T10:00:00-05:00",
+                "America/New_York")),
+        "CREATE",
+        "2026-01-20",
+        "15:30");
+    assertProposal(
+        postProposal(
+            request(
+                "Remind me to take a break in 30 minutes.",
+                "2026-01-15T10:00:00-05:00",
+                "America/New_York")),
+        "CREATE",
+        "2026-01-15",
+        "10:30");
+    assertProposal(
+        postProposal(
+            request(
+                "Remind me to renew the license on February 29, 2024 at 8 AM.",
+                "2024-02-28T10:00:00-05:00",
+                "America/New_York")),
+        "CREATE",
+        "2024-02-29",
+        "08:00");
+    assertProposal(
+        postProposal(
+            request(
+                "Remind me to check the backup in two hours.",
+                "2026-12-31T23:00:00-05:00",
+                "America/New_York")),
+        "CREATE",
+        "2027-01-01",
+        "01:00");
+
+    for (String text :
+        new String[] {
+          "Remind me to water the plants at 6 PM.",
+          "Remind me to pay the bill on 04/05/26 at 9 AM.",
+          "Remind me to call the clinic on January 20 at 8.",
+          "Remind me at 2:30 AM on March 8, 2026 to take the train.",
+          "Remind me next Tuesday, January 21, 2026 at 9 AM."
+        }) {
+      JsonNode clarification = postProposal(request(text, CONTEXT));
+      assertEquals("CLARIFY", clarification.path("intent").textValue(), text);
+      assertTrue(clarification.path("needs_clarification").booleanValue(), text);
+      assertTrue(clarification.path("clarification_question").isTextual(), text);
+    }
+
+    int afterValidContexts = fakeTransport.requests().size();
+    for (String invalidRequest :
+        new String[] {
+          """
+          {"natural_language_request":"Remind me tomorrow at 9 AM.","timezone":"America/New_York"}
+          """,
+          """
+          {"natural_language_request":"Remind me tomorrow at 9 AM.","reference_datetime":"2026-01-15T10:00:00-05:00","timezone":"Mars/Olympus_Mons"}
+          """,
+          """
+          {"natural_language_request":"Remind me tomorrow at 9 AM.","reference_datetime":"2026-01-15T10:00:00-05:00"}
+          """,
+          """
+          {"natural_language_request":" ","reference_datetime":"2026-01-15T10:00:00-05:00","timezone":"America/New_York"}
+          """
+        }) {
+      JsonNode clarification = postProposal(invalidRequest);
+      assertEquals("CLARIFY", clarification.path("intent").textValue());
+      assertTrue(clarification.path("needs_clarification").booleanValue());
+    }
+    assertEquals(afterValidContexts, fakeTransport.requests().size());
+    assertEquals(initialRequests + 9, afterValidContexts);
   }
 
   private JsonNode response(MvcResult result) throws Exception {
     return objectMapper.readTree(result.getResponse().getContentAsString());
+  }
+
+  private JsonNode postProposal(String body) throws Exception {
+    MvcResult result =
+        mockMvc
+            .perform(
+                post(ENDPOINT)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(body))
+            .andExpect(status().isOk())
+            .andReturn();
+    return response(result);
+  }
+
+  private void assertProposal(JsonNode proposal, String intent, String date, String time) {
+    assertEquals(
+        Set.of(
+            "intent",
+            "task",
+            "date",
+            "time",
+            "needs_clarification",
+            "clarification_question"),
+        keys(proposal));
+    assertEquals(intent, proposal.path("intent").textValue());
+    assertEquals(date, proposal.path("date").textValue());
+    assertEquals(time, proposal.path("time").textValue());
+    assertFalse(proposal.path("needs_clarification").booleanValue());
   }
 
   private Set<String> keys(JsonNode node) {
@@ -167,11 +276,24 @@ class ReminderProposalApiTest {
   }
 
   private String request(String text) {
+    return request(text, CONTEXT);
+  }
+
+  private String request(String text, String referenceDatetime, String timezone) {
+    return request(
+        text,
+        "\"reference_datetime\":"
+            + objectMapper.valueToTree(referenceDatetime)
+            + ",\"timezone\":"
+            + objectMapper.valueToTree(timezone));
+  }
+
+  private String request(String text, String context) {
     try {
       return "{\"natural_language_request\":"
           + objectMapper.writeValueAsString(text)
           + ","
-          + CONTEXT
+          + context
           + "}";
     } catch (JsonProcessingException exception) {
       throw new IllegalStateException("Unable to create test request", exception);
@@ -198,6 +320,60 @@ class ReminderProposalApiTest {
             }
             if (body.contains("provider failure")) {
               return new FakeProviderTransport.Response(401, "test-only-api-key");
+            }
+            if (body.contains("submit the report on January 20, 2026 at 3:30 PM")) {
+              return response(
+                  """
+                  {"intent":"CREATE","task":"Submit the report","date":"2026-01-20","time":"15:30","needs_clarification":false,"clarification_question":null}
+                  """.strip());
+            }
+            if (body.contains("take a break in 30 minutes")) {
+              return response(
+                  """
+                  {"intent":"CREATE","task":"Take a break","date":"2026-01-15","time":"10:30","needs_clarification":false,"clarification_question":null}
+                  """.strip());
+            }
+            if (body.contains("renew the license on February 29, 2024")) {
+              return response(
+                  """
+                  {"intent":"CREATE","task":"Renew the license","date":"2024-02-29","time":"08:00","needs_clarification":false,"clarification_question":null}
+                  """.strip());
+            }
+            if (body.contains("check the backup in two hours")) {
+              return response(
+                  """
+                  {"intent":"CREATE","task":"Check the backup","date":"2027-01-01","time":"01:00","needs_clarification":false,"clarification_question":null}
+                  """.strip());
+            }
+            if (body.contains("water the plants at 6 PM")) {
+              return response(
+                  """
+                  {"intent":"CLARIFY","task":"Water the plants","date":null,"time":"18:00","needs_clarification":true,"clarification_question":"Which date should I use?"}
+                  """.strip());
+            }
+            if (body.contains("pay the bill on 04/05/26")) {
+              return response(
+                  """
+                  {"intent":"CLARIFY","task":"Pay the bill","date":null,"time":"09:00","needs_clarification":true,"clarification_question":"Which calendar date do you mean?"}
+                  """.strip());
+            }
+            if (body.contains("call the clinic on January 20 at 8")) {
+              return response(
+                  """
+                  {"intent":"CLARIFY","task":"Call the clinic","date":"2026-01-20","time":null,"needs_clarification":true,"clarification_question":"Did you mean 8 AM or 8 PM?"}
+                  """.strip());
+            }
+            if (body.contains("take the train")) {
+              return response(
+                  """
+                  {"intent":"CLARIFY","task":"Take the train","date":"2026-03-08","time":null,"needs_clarification":true,"clarification_question":"What valid local time should I use?"}
+                  """.strip());
+            }
+            if (body.contains("next Tuesday, January 21, 2026")) {
+              return response(
+                  """
+                  {"intent":"CLARIFY","task":null,"date":null,"time":"09:00","needs_clarification":true,"clarification_question":"Which date did you intend?"}
+                  """.strip());
             }
             if (body.contains("email team tomorrow")) {
               return response(
