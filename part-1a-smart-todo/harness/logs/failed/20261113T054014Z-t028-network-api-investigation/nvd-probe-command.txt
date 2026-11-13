@@ -1,0 +1,1 @@
+Command: curl --disable --silent --show-error --connect-timeout 10 --max-time 45 --max-filesize 1048576 --dump-header <headers> --output <body> --write-out ... https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=1

@@ -1,0 +1,29 @@
+{
+  "run_id": "us1-focused-20261113T1003Z",
+  "recorded_at_utc": "2026-11-13T10:03:38Z",
+  "status": "passed",
+  "command": "mvn -q -Dlogging.level.root=ERROR -f part-1b-reminder-agent/backend/pom.xml -Dtest=ReminderFoundationTest,ReminderRequestValidatorTest,ReminderProposalContractTest,ReminderProposalSchemaValidatorTest,ReminderProposalInvariantValidatorTest,ReminderProposalApiTest,ReminderPromptBuilderTest,ModelOutputParserTest,GeminiProviderAdapterTest,ProviderRetryPolicyTest,JsonSchemaDependencyCompatibilityTest,ProviderTestSupportTest test",
+  "summary": {
+    "tests": 47,
+    "passed": 47,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {"name": "ReminderFoundationTest", "tests": 4, "failures": 0, "errors": 0, "skipped": 0},
+    {"name": "ReminderRequestValidatorTest", "tests": 13, "failures": 0, "errors": 0, "skipped": 0},
+    {"name": "ReminderProposalContractTest", "tests": 3, "failures": 0, "errors": 0, "skipped": 0},
+    {"name": "ReminderProposalSchemaValidatorTest", "tests": 3, "failures": 0, "errors": 0, "skipped": 0},
+    {"name": "ReminderProposalInvariantValidatorTest", "tests": 5, "failures": 0, "errors": 0, "skipped": 0},
+    {"name": "ReminderProposalApiTest", "tests": 1, "failures": 0, "errors": 0, "skipped": 0},
+    {"name": "ReminderPromptBuilderTest", "tests": 2, "failures": 0, "errors": 0, "skipped": 0},
+    {"name": "ModelOutputParserTest", "tests": 3, "failures": 0, "errors": 0, "skipped": 0},
+    {"name": "GeminiProviderAdapterTest", "tests": 7, "failures": 0, "errors": 0, "skipped": 0},
+    {"name": "ProviderRetryPolicyTest", "tests": 3, "failures": 0, "errors": 0, "skipped": 0},
+    {"name": "JsonSchemaDependencyCompatibilityTest", "tests": 1, "failures": 0, "errors": 0, "skipped": 0},
+    {"name": "ProviderTestSupportTest", "tests": 2, "failures": 0, "errors": 0, "skipped": 0}
+  ],
+  "provider_calls": 0,
+  "evaluation_run": false
+}

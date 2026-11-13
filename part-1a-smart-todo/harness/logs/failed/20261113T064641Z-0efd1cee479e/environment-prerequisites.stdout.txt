@@ -1,0 +1,4 @@
+/usr/local/sdkman/candidates/maven/current/bin/mvn
+/usr/bin/bash
+/usr/bin/curl
+/usr/bin/jq

@@ -1,0 +1,1 @@
+exit_codes: compilation=0 spotless=0 spotbugs=0 tests=0

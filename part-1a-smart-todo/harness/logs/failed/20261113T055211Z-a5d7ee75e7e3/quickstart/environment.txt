@@ -1,0 +1,4 @@
+base_url_before_restart=http://127.0.0.1:40249
+base_url_after_restart=http://127.0.0.1:39635
+storage_path=/tmp/smart-todo-t029-storage.kPb8Ry1X/tasks.json
+storage_initially_absent=true

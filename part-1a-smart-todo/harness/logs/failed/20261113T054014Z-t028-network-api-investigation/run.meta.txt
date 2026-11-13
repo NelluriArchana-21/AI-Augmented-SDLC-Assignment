@@ -1,0 +1,2 @@
+evidence_directory=part-1a-smart-todo/harness/logs/failed/20261113T054014Z-t028-network-api-investigation
+started_utc=20261113T054014Z

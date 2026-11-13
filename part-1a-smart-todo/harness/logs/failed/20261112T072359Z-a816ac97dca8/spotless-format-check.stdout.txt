@@ -1,0 +1,99 @@
+[INFO] Scanning for projects...
+[INFO] Loaded 24459 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] 
+[INFO] ---------------------< com.assignment:smart-todo >----------------------
+[INFO] Building smart-todo 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:check (default-cli) @ smart-todo ---
+[INFO] Loaded 64 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
+[ERROR] Step 'google-java-format' found problem in 'src/test/java/com/assignment/smarttodo/unit/TaskQueryServiceTest.java':
+'java.util.Queue com.sun.tools.javac.util.Log$DeferredDiagnosticHandler.getDiagnostics()'
+java.lang.NoSuchMethodError: 'java.util.Queue com.sun.tools.javac.util.Log$DeferredDiagnosticHandler.getDiagnostics()'
+    at com.google.googlejavaformat.java.JavaInput.buildToks (JavaInput.java:367)
+    at com.google.googlejavaformat.java.JavaInput.buildToks (JavaInput.java:335)
+    at com.google.googlejavaformat.java.JavaInput.<init> (JavaInput.java:277)
+    at com.google.googlejavaformat.java.Formatter.getFormatReplacements (Formatter.java:270)
+    at com.google.googlejavaformat.java.Formatter.formatSource (Formatter.java:257)
+    at com.google.googlejavaformat.java.Formatter.formatSource (Formatter.java:223)
+    at com.diffplug.spotless.glue.java.GoogleJavaFormatFormatterFunc.apply (GoogleJavaFormatFormatterFunc.java:65)
+    at com.diffplug.spotless.FormatterFunc.apply (FormatterFunc.java:32)
+    at com.diffplug.spotless.FormatterStepImpl$Standard.format (FormatterStepImpl.java:82)
+    at com.diffplug.spotless.FormatterStep$Strict.format (FormatterStep.java:103)
+    at com.diffplug.spotless.Formatter.compute (Formatter.java:246)
+    at com.diffplug.spotless.PaddedCell.calculateDirtyState (PaddedCell.java:203)
+    at com.diffplug.spotless.PaddedCell.calculateDirtyState (PaddedCell.java:190)
+    at com.diffplug.spotless.maven.SpotlessCheckMojo.process (SpotlessCheckMojo.java:56)
+    at com.diffplug.spotless.maven.AbstractSpotlessMojo.execute (AbstractSpotlessMojo.java:237)
+    at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo (DefaultBuildPluginManager.java:127)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:336)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:324)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:220)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:181)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:79)
+    at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:169)
+    at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:166)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:106)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:74)
+    at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:56)
+    at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:121)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:267)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:179)
+    at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:105)
+    at org.apache.maven.cli.MavenCli.execute (MavenCli.java:1017)
+    at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:299)
+    at org.apache.maven.cli.MavenCli.main (MavenCli.java:219)
+    at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:104)
+    at java.lang.reflect.Method.invoke (Method.java:565)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:362)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+[INFO] ------------------------------------------------------------------------
+[ERROR] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.962 s
+[INFO] Finished at: 2026-11-12T07:24:17Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:2.43.0:check (default-cli) on project smart-todo: Execution default-cli of goal com.diffplug.spotless:spotless-maven-plugin:2.43.0:check failed: An API incompatibility was encountered while executing com.diffplug.spotless:spotless-maven-plugin:2.43.0:check: java.lang.NoSuchMethodError: 'java.util.Queue com.sun.tools.javac.util.Log$DeferredDiagnosticHandler.getDiagnostics()'
+[ERROR] -----------------------------------------------------
+[ERROR] realm =    plugin>com.diffplug.spotless:spotless-maven-plugin:2.43.0
+[ERROR] strategy = org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy
+[ERROR] urls[0] = file:/home/codespace/.m2/repository/com/diffplug/spotless/spotless-maven-plugin/2.43.0/spotless-maven-plugin-2.43.0.jar
+[ERROR] urls[1] = file:/home/codespace/.m2/repository/com/diffplug/spotless/spotless-lib/2.45.0/spotless-lib-2.45.0.jar
+[ERROR] urls[2] = file:/home/codespace/.m2/repository/com/diffplug/spotless/spotless-lib-extra/2.45.0/spotless-lib-extra-2.45.0.jar
+[ERROR] urls[3] = file:/home/codespace/.m2/repository/com/diffplug/durian/durian-core/1.2.0/durian-core-1.2.0.jar
+[ERROR] urls[4] = file:/home/codespace/.m2/repository/com/diffplug/durian/durian-io/1.2.0/durian-io-1.2.0.jar
+[ERROR] urls[5] = file:/home/codespace/.m2/repository/com/diffplug/durian/durian-collect/1.2.0/durian-collect-1.2.0.jar
+[ERROR] urls[6] = file:/home/codespace/.m2/repository/org/codehaus/plexus/plexus-resources/1.2.0/plexus-resources-1.2.0.jar
+[ERROR] urls[7] = file:/home/codespace/.m2/repository/org/eclipse/jgit/org.eclipse.jgit/6.7.0.202309050840-r/org.eclipse.jgit-6.7.0.202309050840-r.jar
+[ERROR] urls[8] = file:/home/codespace/.m2/repository/org/sonatype/plexus/plexus-build-api/0.0.7/plexus-build-api-0.0.7.jar
+[ERROR] urls[9] = file:/home/codespace/.m2/repository/com/googlecode/concurrent-trees/concurrent-trees/2.6.1/concurrent-trees-2.6.1.jar
+[ERROR] urls[10] = file:/home/codespace/.m2/repository/dev/equo/ide/solstice/1.7.5/solstice-1.7.5.jar
+[ERROR] urls[11] = file:/home/codespace/.m2/repository/org/codehaus/plexus/plexus-utils/3.4.1/plexus-utils-3.4.1.jar
+[ERROR] urls[12] = file:/home/codespace/.m2/repository/com/googlecode/javaewah/JavaEWAH/1.2.3/JavaEWAH-1.2.3.jar
+[ERROR] urls[13] = file:/home/codespace/.m2/repository/commons-codec/commons-codec/1.16.0/commons-codec-1.16.0.jar
+[ERROR] urls[14] = file:/home/codespace/.m2/repository/com/diffplug/durian/durian-swt.os/4.2.2/durian-swt.os-4.2.2.jar
+[ERROR] urls[15] = file:/home/codespace/.m2/repository/org/eclipse/platform/org.eclipse.osgi/3.18.300/org.eclipse.osgi-3.18.300.jar
+[ERROR] urls[16] = file:/home/codespace/.m2/repository/org/tukaani/xz/1.9/xz-1.9.jar
+[ERROR] urls[17] = file:/home/codespace/.m2/repository/com/squareup/okhttp3/okhttp/4.12.0/okhttp-4.12.0.jar
+[ERROR] urls[18] = file:/home/codespace/.m2/repository/com/squareup/okio/okio/3.6.0/okio-3.6.0.jar
+[ERROR] urls[19] = file:/home/codespace/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.8.21/kotlin-stdlib-jdk8-1.8.21.jar
+[ERROR] urls[20] = file:/home/codespace/.m2/repository/com/squareup/okio/okio-jvm/3.6.0/okio-jvm-3.6.0.jar
+[ERROR] urls[21] = file:/home/codespace/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib/1.8.21/kotlin-stdlib-1.8.21.jar
+[ERROR] urls[22] = file:/home/codespace/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.8.21/kotlin-stdlib-jdk7-1.8.21.jar
+[ERROR] urls[23] = file:/home/codespace/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-common/1.9.10/kotlin-stdlib-common-1.9.10.jar
+[ERROR] urls[24] = file:/home/codespace/.m2/repository/org/jetbrains/annotations/13.0/annotations-13.0.jar
+[ERROR] Number of foreign imports: 1
+[ERROR] import: Entry[import  from realm ClassRealm[maven.api, parent: null]]
+[ERROR] 
+[ERROR] -----------------------------------------------------
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginContainerException

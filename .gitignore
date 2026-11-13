@@ -1,0 +1,19 @@
+# Java / Maven build output
+**/target/
+
+# IDE files
+.idea/
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.tmp
+*.swp
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example

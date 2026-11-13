@@ -1,0 +1,20 @@
+T028 Java 21 SpotBugs repair — exact changes
+
+1. part-1a-smart-todo/backend/pom.xml
+Added dependency com.github.spotbugs:spotbugs-annotations:4.8.6 with provided scope.
+
+2. part-1a-smart-todo/backend/src/main/java/com/assignment/smarttodo/controller/TaskController.java
+Imported edu.umd.cs.findbugs.annotations.SuppressFBWarnings and replaced the constructor's ineffective @SuppressWarnings with:
+@SuppressFBWarnings(
+    value = "EI_EXPOSE_REP2",
+    justification =
+        "Intentional Spring-injected service collaborator; it is not exposed as task data.")
+
+3. part-1a-smart-todo/backend/src/main/java/com/assignment/smarttodo/service/TaskService.java
+Imported edu.umd.cs.findbugs.annotations.SuppressFBWarnings and replaced the constructor's ineffective @SuppressWarnings with:
+@SuppressFBWarnings(
+    value = "EI_EXPOSE_REP2",
+    justification =
+        "Intentional shared repository collaborator for task persistence; it is not returned to callers.")
+
+The annotations are constructor-scoped and target only EI_EXPOSE_REP2. No application behavior, unrelated finding, harness configuration, original T027 evidence, or Java 21 investigation evidence was changed.

@@ -1,0 +1,150 @@
+version: 1
+project:
+  name: smart-todo-manager
+  backend_pom: part-1a-smart-todo/backend/pom.xml
+  working_directory: .
+  required_java_major: 21
+
+execution:
+  continue_after_check_failure: true
+  expected_success_exit_code: 0
+  final_exit_code_on_mandatory_failure: 1
+  missing_prerequisite: fail
+  record_stdout_stderr: true
+  do_not_log_environment_values: true
+
+evidence:
+  failed_runs: part-1a-smart-todo/harness/logs/failed/
+  passed_runs: part-1a-smart-todo/harness/logs/passed/
+  record_format: jsonl
+  unique_run_directory: true
+  preserve_initial_and_revalidation_runs: true
+
+api_validation:
+  base_url_environment_variable: SMART_TODO_BASE_URL
+  requires:
+    - bash
+    - curl
+    - jq
+    - running_smart_todo_service
+    - isolated_task_storage
+  script: part-1a-smart-todo/harness/scripts/validate-api-blackbox.sh
+
+checks:
+  - id: environment-prerequisites
+    category: environment
+    mandatory: true
+    timeout_seconds: 30
+    command:
+      - bash
+      - -eu
+      - -c
+      - >-
+        java -version 2>&1 | grep -Eq 'version "21([.]|")'
+        && command -v mvn
+        && command -v bash
+        && command -v curl
+        && command -v jq
+    expected:
+      exit_code: 0
+      behavior: Java major version 21 and all required executables are available.
+
+  - id: maven-build-and-test-compilation
+    category: build
+    mandatory: true
+    timeout_seconds: 600
+    command:
+      - mvn
+      - -f
+      - part-1a-smart-todo/backend/pom.xml
+      - -DskipTests
+      - test
+    expected:
+      exit_code: 0
+      behavior: Maven compiles application and test sources; tests are not executed in this check.
+
+  - id: spotless-format-check
+    category: formatting
+    mandatory: true
+    timeout_seconds: 600
+    command:
+      - mvn
+      - -f
+      - part-1a-smart-todo/backend/pom.xml
+      - spotless:check
+    expected:
+      exit_code: 0
+      behavior: Java formatting check completes without formatting violations or tool errors.
+
+  - id: spotbugs-findsecbugs
+    category: static-analysis-security
+    mandatory: true
+    timeout_seconds: 900
+    command:
+      - mvn
+      - -f
+      - part-1a-smart-todo/backend/pom.xml
+      - spotbugs:check
+    expected:
+      exit_code: 0
+      behavior: SpotBugs with the configured FindSecBugs plugin completes without findings or tool errors.
+
+  - id: owasp-dependency-check
+    category: dependency-security
+    mandatory: true
+    timeout_seconds: 3600
+    command:
+      - mvn
+      - -f
+      - part-1a-smart-todo/backend/pom.xml
+      - org.owasp:dependency-check-maven:check
+    expected:
+      exit_code: 0
+      behavior: Dependency-Check completes successfully and reports no finding that fails the configured CVSS threshold.
+
+  - id: junit-unit-tests
+    category: unit-tests
+    mandatory: true
+    timeout_seconds: 600
+    command:
+      - mvn
+      - -f
+      - part-1a-smart-todo/backend/pom.xml
+      - -Dtest=TaskServiceTest,TaskQueryServiceTest,JsonTaskRepositoryTest
+      - test
+    expected:
+      exit_code: 0
+      behavior: All selected unit tests pass.
+
+  - id: junit-integration-tests
+    category: integration-tests
+    mandatory: true
+    timeout_seconds: 900
+    command:
+      - mvn
+      - -f
+      - part-1a-smart-todo/backend/pom.xml
+      - -Dtest=TaskApiIntegrationTest,TaskFilteringIntegrationTest,TaskPersistenceIntegrationTest,PersistenceFailureIntegrationTest
+      - test
+    expected:
+      exit_code: 0
+      behavior: All selected API, filtering, persistence-recovery, and persistence-failure integration tests pass.
+
+  - id: blackbox-api-validation
+    category: independent-api-contract
+    mandatory: true
+    timeout_seconds: 300
+    prerequisites:
+      - bash
+      - curl
+      - jq
+      - SMART_TODO_BASE_URL
+      - running_smart_todo_service
+      - isolated_task_storage
+      - part-1a-smart-todo/harness/scripts/validate-api-blackbox.sh
+    command:
+      - bash
+      - part-1a-smart-todo/harness/scripts/validate-api-blackbox.sh
+    expected:
+      exit_code: 0
+      behavior: External HTTP assertions pass independently of JUnit MockMvc tests.

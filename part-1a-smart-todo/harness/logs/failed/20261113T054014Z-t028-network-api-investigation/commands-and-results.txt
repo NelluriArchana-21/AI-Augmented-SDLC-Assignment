@@ -1,0 +1,24 @@
+Initial T027 evidence reviewed (read-only):
+- part-1a-smart-todo/harness/logs/failed/20261112T072359Z-a816ac97dca8/results.jsonl
+- OWASP: exit 1 after 571.139s; NVD API returned HTTP 522 after 90,000/424,628 records, followed by UpdateException/NoDataException.
+- Black-box: blocked before execution (exit_code null); SMART_TODO_BASE_URL, SMART_TODO_STORAGE_PATH, and isolated-storage confirmation were missing.
+
+NVD connectivity probe command:
+curl --disable --silent --show-error --connect-timeout 10 --max-time 45 --max-filesize 1048576 --dump-header <headers> --output <body> --write-out 'http_status=%{http_code}\nremote_ip=%{remote_ip}\ntime_total=%{time_total}\n' 'https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=1'
+Result: exit 0, http_status=200 remote_ip=172.65.90.27 time_total=23.183455 ; HTTP 200. The project POM uses Dependency-Check 10.0.3 and sets failBuildOnCVSS=0; it has no NVD URL override. No policy/config change was made.
+
+Service startup command (Java 21):
+TASK_STORAGE_PATH=/tmp/smart-todo-t028-storage.8S7WqKwm/tasks.json SERVER_ADDRESS=127.0.0.1 SERVER_PORT=0 mvn -f part-1a-smart-todo/backend/pom.xml spring-boot:run
+Result: process PID 7116; bound to loopback 127.0.0.1 on OS-assigned port 39493; GET /api/tasks returned HTTP 200. Storage path was new and absent before startup. The configured default /tmp/smart-todo/tasks.json was absent and was not used.
+
+Black-box command:
+SMART_TODO_BASE_URL=http://127.0.0.1:39493 SMART_TODO_STORAGE_PATH=/tmp/smart-todo-t028-storage.8S7WqKwm/tasks.json SMART_TODO_STORAGE_ISOLATED=true bash part-1a-smart-todo/harness/scripts/validate-api-blackbox.sh
+Result: exit 0; request_count=53, failure_count=0. The script deleted all test-created tasks; storage was [] after the suite.
+
+Shutdown command:
+kill -TERM 7116
+Result: signal command exit 0; service process exited with status 143; PID 7116 and Spring PID 7327 were no longer running, and port 39493 no longer responded.
+
+Cleanup: removed only the generated temporary file and its exact mktemp-created directory after confirming the JSON collection was empty. Existing user task data and all original evidence were left untouched.
+
+Changes: no source, harness, or policy/configuration files changed. New logs and results are confined to this T028 evidence directory. T028 remains incomplete; T029/T030 were not started.

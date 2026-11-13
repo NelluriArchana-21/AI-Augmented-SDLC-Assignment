@@ -1,0 +1,4 @@
+SMART_TODO_BASE_URL=http://127.0.0.1:39493
+SMART_TODO_STORAGE_PATH=/tmp/smart-todo-t028-storage.8S7WqKwm/tasks.json
+SMART_TODO_STORAGE_ISOLATED=true
+Command: bash part-1a-smart-todo/harness/scripts/validate-api-blackbox.sh

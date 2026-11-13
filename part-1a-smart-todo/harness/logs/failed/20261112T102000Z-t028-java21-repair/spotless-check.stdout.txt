@@ -1,0 +1,50 @@
+[INFO] Scanning for projects...
+[INFO] Loaded 24459 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] 
+[INFO] ---------------------< com.assignment:smart-todo >----------------------
+[INFO] Building smart-todo 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:check (default-cli) @ smart-todo ---
+[INFO] Loaded 64 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
+[INFO] Spotless.Java is keeping 20 files clean - 2 needs changes to be clean, 0 were already clean, 18 were skipped because caching determined they were already clean
+[INFO] ------------------------------------------------------------------------
+[ERROR] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.968 s
+[INFO] Finished at: 2026-11-12T10:20:32Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:2.43.0:check (default-cli) on project smart-todo: The following files had format violations:
+[ERROR]     src/main/java/com/assignment/smarttodo/service/TaskService.java
+[ERROR]         @@ -1,10 +1,10 @@
+[ERROR]          package·com.assignment.smarttodo.service;
+[ERROR]          
+[ERROR]         -import·edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+[ERROR]          import·com.assignment.smarttodo.exception.TaskNotFoundException;
+[ERROR]          import·com.assignment.smarttodo.model.Task;
+[ERROR]          import·com.assignment.smarttodo.repository.TaskRepository;
+[ERROR]          import·com.assignment.smarttodo.validation.TaskValidator;
+[ERROR]         +import·edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+[ERROR]          import·java.util.List;
+[ERROR]          import·java.util.UUID;
+[ERROR]          import·org.springframework.stereotype.Service;
+[ERROR]     src/main/java/com/assignment/smarttodo/controller/TaskController.java
+[ERROR]         @@ -1,8 +1,8 @@
+[ERROR]          package·com.assignment.smarttodo.controller;
+[ERROR]          
+[ERROR]         -import·edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+[ERROR]          import·com.assignment.smarttodo.model.Task;
+[ERROR]          import·com.assignment.smarttodo.service.TaskService;
+[ERROR]         +import·edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+[ERROR]          import·java.util.List;
+[ERROR]          import·org.springframework.http.HttpStatus;
+[ERROR]          import·org.springframework.http.ResponseEntity;
+[ERROR] Run 'mvn spotless:apply' to fix these violations.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

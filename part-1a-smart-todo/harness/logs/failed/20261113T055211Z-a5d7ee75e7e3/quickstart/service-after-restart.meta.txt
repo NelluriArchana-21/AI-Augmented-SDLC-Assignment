@@ -1,0 +1,6 @@
+mvn_pid=21826
+storage_path=/tmp/smart-todo-t029-storage.kPb8Ry1X/tasks.json
+server_address=127.0.0.1
+server_port=0
+readiness_http_status=200
+port=39635

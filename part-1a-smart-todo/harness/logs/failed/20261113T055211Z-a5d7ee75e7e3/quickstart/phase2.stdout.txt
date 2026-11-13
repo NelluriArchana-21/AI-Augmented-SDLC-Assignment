@@ -1,0 +1,5 @@
+quickstart-5-restart-recovery: passed HTTP 200 (expected 200)
+quickstart-6-invalid-json-error: passed HTTP 500 (expected 500)
+quickstart-6-invalid-json-preserved: passed HTTP 0 (expected 0)
+phase2_checks=3
+phase2_failures=0

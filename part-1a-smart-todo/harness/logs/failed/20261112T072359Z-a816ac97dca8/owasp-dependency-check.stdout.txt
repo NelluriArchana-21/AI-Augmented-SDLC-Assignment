@@ -1,0 +1,140 @@
+[INFO] Scanning for projects...
+[INFO] Loaded 24459 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] 
+[INFO] ---------------------< com.assignment:smart-todo >----------------------
+[INFO] Building smart-todo 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] Loaded 64 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
+[INFO] 
+[INFO] --- dependency-check:10.0.3:check (default-cli) @ smart-todo ---
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-releases (https://maven.java.net/content/repositories/releases/): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+[INFO] Checking for updates
+[WARNING] An NVD API Key was not provided - it is highly recommended to use an NVD API key as the update can take a VERY long time without an API Key
+[INFO] NVD API has 424,628 records in this update
+[INFO] Downloaded 10,000/424,628 (2%)
+[INFO] Downloaded 20,000/424,628 (5%)
+[INFO] Downloaded 30,000/424,628 (7%)
+[INFO] Downloaded 40,000/424,628 (9%)
+[INFO] Downloaded 50,000/424,628 (12%)
+[INFO] Downloaded 60,000/424,628 (14%)
+[INFO] Downloaded 70,000/424,628 (16%)
+[INFO] Downloaded 80,000/424,628 (19%)
+[INFO] Downloaded 90,000/424,628 (21%)
+[ERROR] Error updating the NVD Data
+org.owasp.dependencycheck.data.update.exception.UpdateException: Error updating the NVD Data
+    at org.owasp.dependencycheck.data.update.NvdApiDataSource.processApi (NvdApiDataSource.java:392)
+    at org.owasp.dependencycheck.data.update.NvdApiDataSource.update (NvdApiDataSource.java:116)
+    at org.owasp.dependencycheck.Engine.doUpdates (Engine.java:906)
+    at org.owasp.dependencycheck.Engine.initializeAndUpdateDatabase (Engine.java:711)
+    at org.owasp.dependencycheck.Engine.analyzeDependencies (Engine.java:637)
+    at org.owasp.dependencycheck.maven.BaseDependencyCheckMojo.runCheck (BaseDependencyCheckMojo.java:1967)
+    at org.owasp.dependencycheck.maven.BaseDependencyCheckMojo.execute (BaseDependencyCheckMojo.java:1150)
+    at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo (DefaultBuildPluginManager.java:127)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:336)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:324)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:220)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:181)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:79)
+    at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:169)
+    at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:166)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:106)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:74)
+    at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:56)
+    at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:121)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:267)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:179)
+    at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:105)
+    at org.apache.maven.cli.MavenCli.execute (MavenCli.java:1017)
+    at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:299)
+    at org.apache.maven.cli.MavenCli.main (MavenCli.java:219)
+    at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:104)
+    at java.lang.reflect.Method.invoke (Method.java:565)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:362)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+Caused by: io.github.jeremylong.openvulnerability.client.nvd.NvdApiException: NVD Returned Status Code: 522
+    at io.github.jeremylong.openvulnerability.client.nvd.NvdCveClient._next (NvdCveClient.java:412)
+    at io.github.jeremylong.openvulnerability.client.nvd.NvdCveClient.next (NvdCveClient.java:331)
+    at org.owasp.dependencycheck.data.update.NvdApiDataSource.processApi (NvdApiDataSource.java:352)
+    at org.owasp.dependencycheck.data.update.NvdApiDataSource.update (NvdApiDataSource.java:116)
+    at org.owasp.dependencycheck.Engine.doUpdates (Engine.java:906)
+    at org.owasp.dependencycheck.Engine.initializeAndUpdateDatabase (Engine.java:711)
+    at org.owasp.dependencycheck.Engine.analyzeDependencies (Engine.java:637)
+    at org.owasp.dependencycheck.maven.BaseDependencyCheckMojo.runCheck (BaseDependencyCheckMojo.java:1967)
+    at org.owasp.dependencycheck.maven.BaseDependencyCheckMojo.execute (BaseDependencyCheckMojo.java:1150)
+    at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo (DefaultBuildPluginManager.java:127)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:336)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:324)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:220)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:181)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:79)
+    at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:169)
+    at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:166)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:106)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:74)
+    at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:56)
+    at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:121)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:267)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:179)
+    at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:105)
+    at org.apache.maven.cli.MavenCli.execute (MavenCli.java:1017)
+    at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:299)
+    at org.apache.maven.cli.MavenCli.main (MavenCli.java:219)
+    at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:104)
+    at java.lang.reflect.Method.invoke (Method.java:565)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:362)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+[ERROR] Task java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask@7a673007[Not completed, task = java.util.concurrent.Executors$RunnableAdapter@6385e6de[Wrapped task = org.apache.hc.client5.http.impl.async.InternalAbstractHttpAsyncClient$ScheduledRequestExecution@64289d16]] rejected from java.util.concurrent.ScheduledThreadPoolExecutor@5beb6be2[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0]
+java.util.concurrent.RejectedExecutionException: Task java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask@7a673007[Not completed, task = java.util.concurrent.Executors$RunnableAdapter@6385e6de[Wrapped task = org.apache.hc.client5.http.impl.async.InternalAbstractHttpAsyncClient$ScheduledRequestExecution@64289d16]] rejected from java.util.concurrent.ScheduledThreadPoolExecutor@5beb6be2[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0]
+    at java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution (ThreadPoolExecutor.java:2032)
+    at java.util.concurrent.ThreadPoolExecutor.reject (ThreadPoolExecutor.java:787)
+    at java.util.concurrent.ScheduledThreadPoolExecutor.delayedExecute (ScheduledThreadPoolExecutor.java:345)
+    at java.util.concurrent.ScheduledThreadPoolExecutor.schedule (ScheduledThreadPoolExecutor.java:549)
+    at java.util.concurrent.ScheduledThreadPoolExecutor.execute (ScheduledThreadPoolExecutor.java:692)
+    at java.util.concurrent.Executors$DelegatedExecutorService.execute (Executors.java:665)
+    at org.apache.hc.client5.http.impl.async.InternalAbstractHttpAsyncClient.executeScheduled (InternalAbstractHttpAsyncClient.java:387)
+    at org.apache.hc.client5.http.impl.async.InternalAbstractHttpAsyncClient$1.scheduleExecution (InternalAbstractHttpAsyncClient.java:137)
+    at org.apache.hc.client5.http.impl.async.AsyncHttpRequestRetryExec$1.failed (AsyncHttpRequestRetryExec.java:187)
+    at org.apache.hc.client5.http.impl.async.AsyncProtocolExec$1.failed (AsyncProtocolExec.java:295)
+    at org.apache.hc.client5.http.impl.async.HttpAsyncMainClientExec$1.failed (HttpAsyncMainClientExec.java:131)
+    at org.apache.hc.core5.http2.impl.nio.ClientH2StreamHandler.failed (ClientH2StreamHandler.java:253)
+    at org.apache.hc.core5.http2.impl.nio.AbstractH2StreamMultiplexer$H2Stream.reset (AbstractH2StreamMultiplexer.java:1668)
+    at org.apache.hc.core5.http2.impl.nio.AbstractH2StreamMultiplexer$H2Stream.cancel (AbstractH2StreamMultiplexer.java:1693)
+    at org.apache.hc.core5.http2.impl.nio.AbstractH2StreamMultiplexer.onDisconnect (AbstractH2StreamMultiplexer.java:575)
+    at org.apache.hc.core5.http2.impl.nio.AbstractH2IOEventHandler.disconnected (AbstractH2IOEventHandler.java:96)
+    at org.apache.hc.core5.http2.impl.nio.ClientH2IOEventHandler.disconnected (ClientH2IOEventHandler.java:39)
+    at org.apache.hc.core5.reactor.ssl.SSLIOSession$1.disconnected (SSLIOSession.java:247)
+    at org.apache.hc.core5.reactor.InternalDataChannel.disconnected (InternalDataChannel.java:204)
+    at org.apache.hc.core5.reactor.SingleCoreIOReactor.processClosedSessions (SingleCoreIOReactor.java:231)
+    at org.apache.hc.core5.reactor.SingleCoreIOReactor.doTerminate (SingleCoreIOReactor.java:106)
+    at org.apache.hc.core5.reactor.AbstractSingleCoreIOReactor.execute (AbstractSingleCoreIOReactor.java:93)
+    at org.apache.hc.core5.reactor.IOReactorWorker.run (IOReactorWorker.java:44)
+    at java.lang.Thread.run (Thread.java:1474)
+[INFO] Updating CISA Known Exploited Vulnerability list: https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
+[INFO] Begin database defrag
+[INFO] End database defrag (5351 ms)
+[WARNING] Unable to update 1 or more Cached Web DataSource, using local data instead. Results may not include recent vulnerabilities.
+[ERROR] Unable to continue dependency-check analysis.
+[INFO] ------------------------------------------------------------------------
+[ERROR] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  09:28 min
+[INFO] Finished at: 2026-11-12T07:34:03Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.owasp:dependency-check-maven:10.0.3:check (default-cli) on project smart-todo: Fatal exception(s) analyzing smart-todo: One or more exceptions occurred during analysis:
+[ERROR] 	UpdateException: Error updating the NVD Data
+[ERROR] 		caused by NvdApiException: NVD Returned Status Code: 522
+[ERROR] 	NoDataException: No documents exist
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

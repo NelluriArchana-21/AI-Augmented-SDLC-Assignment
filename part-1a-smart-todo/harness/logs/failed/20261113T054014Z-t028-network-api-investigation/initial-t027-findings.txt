@@ -1,0 +1,4 @@
+Source: part-1a-smart-todo/harness/logs/failed/20261112T072359Z-a816ac97dca8/results.jsonl
+OWASP record: failed, exit 1, duration 571.139s; NVD API update downloaded 90,000 of 424,628 records, then returned HTTP 522; Dependency-Check ended with UpdateException and NoDataException. The log also has an unrelated maven.java.net certificate warning and a no-NVD-key warning.
+Black-box record: blocked before running the script (duration 0.001s, exit_code null) because SMART_TODO_BASE_URL and SMART_TODO_STORAGE_PATH were unset; SMART_TODO_STORAGE_ISOLATED was also not confirmed. No HTTP request was made.
+Original evidence was read only and remains in its original directory.

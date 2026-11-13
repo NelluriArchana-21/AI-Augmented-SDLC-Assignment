@@ -1,0 +1,44 @@
+[INFO] Scanning for projects...
+[INFO] Loaded 24459 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] 
+[INFO] ---------------------< com.assignment:smart-todo >----------------------
+[INFO] Building smart-todo 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spotbugs:4.8.6.0:check (default-cli) > :spotbugs @ smart-todo >>>
+[INFO] Loaded 64 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
+[INFO] 
+[INFO] --- spotbugs:4.8.6.0:spotbugs (spotbugs) @ smart-todo ---
+[INFO] Fork Value is true
+[INFO] Done SpotBugs Analysis....
+[INFO] 
+[INFO] <<< spotbugs:4.8.6.0:check (default-cli) < :spotbugs @ smart-todo <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.8.6.0:check (default-cli) @ smart-todo ---
+[INFO] BugInstance size is 2
+[INFO] Error size is 0
+[INFO] Total bugs: 2
+[ERROR] Medium: new com.assignment.smarttodo.controller.TaskController(TaskService) may expose internal representation by storing an externally mutable object into TaskController.taskService [com.assignment.smarttodo.controller.TaskController] At TaskController.java:[line 26] EI_EXPOSE_REP2
+[ERROR] Medium: new com.assignment.smarttodo.service.TaskService(TaskRepository) may expose internal representation by storing an externally mutable object into TaskService.repository [com.assignment.smarttodo.service.TaskService] At TaskService.java:[line 19] EI_EXPOSE_REP2
+[INFO] 
+
+
+To see bug detail using the Spotbugs GUI, use the following command "mvn spotbugs:gui"
+
+
+
+[INFO] ------------------------------------------------------------------------
+[ERROR] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  16.640 s
+[INFO] Finished at: 2026-11-12T10:14:56Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal com.github.spotbugs:spotbugs-maven-plugin:4.8.6.0:check (default-cli) on project smart-todo: failed with 2 bugs and 0 errors -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

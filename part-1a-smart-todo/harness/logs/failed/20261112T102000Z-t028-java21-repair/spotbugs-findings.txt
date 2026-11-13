@@ -1,0 +1,2 @@
+BugInstance count: 0
+Finding types: none

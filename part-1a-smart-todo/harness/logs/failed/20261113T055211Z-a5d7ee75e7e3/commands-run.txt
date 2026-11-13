@@ -1,0 +1,15 @@
+Java environment:
+export JAVA_HOME=/usr/local/sdkman/candidates/java/21.0.13.0+2-ms
+export PATH=\"$JAVA_HOME/bin:$PATH\"
+
+Full independent suite (all checks configured in harness/config/validation.yml; no checks skipped):
+SMART_TODO_BASE_URL=http://127.0.0.1:40249 SMART_TODO_STORAGE_PATH=/tmp/smart-todo-t029-storage.kPb8Ry1X/tasks.json SMART_TODO_STORAGE_ISOLATED=true part-1a-smart-todo/harness/scripts/run-validation.sh
+
+Service command, run twice with the same fresh isolated file (once before and once after restart):
+TASK_STORAGE_PATH=/tmp/smart-todo-t029-storage.kPb8Ry1X/tasks.json SERVER_ADDRESS=127.0.0.1 SERVER_PORT=0 mvn -f part-1a-smart-todo/backend/pom.xml spring-boot:run
+
+Quickstart API validation used Python 3 standard-library urllib requests to the loopback base URL and stored each HTTP result in quickstart/phase1.jsonl and quickstart/phase2.jsonl. Phase 1 exercised create, invalid create, valid/invalid status transitions, state preservation, and combined filtering. Phase 2, after restart, checked task ID/order recovery, then wrote malformed JSON to only the dedicated temporary file and verified HTTP 500, explicit error, and unchanged file content. The server logs record the persistence error. See quickstart/environment.txt for the isolated URLs and storage path.
+
+Stop commands:
+kill -TERM 12508 (before restart)
+kill -TERM 21826 (after quickstart completion)

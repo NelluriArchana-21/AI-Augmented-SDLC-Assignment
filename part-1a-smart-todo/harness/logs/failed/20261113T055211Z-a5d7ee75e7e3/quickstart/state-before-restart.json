@@ -1,0 +1,16 @@
+{
+  "token": "899682aaf8",
+  "task_ids": {
+    "lifecycle": "f6c9b884-b971-4641-9783-3c75ece8b21c",
+    "high-two": "ccd421b0-5dbc-4ba4-b13b-b1c32ecd17b9",
+    "medium": "5349e87d-78f2-4e85-b710-4e1b1998f248",
+    "low": "aa1de229-6781-4561-a4ce-3c42af400096",
+    "high-three": "65f82745-f24a-47fc-ba63-c066ead8678b"
+  },
+  "tagged_ids_before_restart": [
+    "f6c9b884-b971-4641-9783-3c75ece8b21c",
+    "ccd421b0-5dbc-4ba4-b13b-b1c32ecd17b9",
+    "65f82745-f24a-47fc-ba63-c066ead8678b",
+    "5349e87d-78f2-4e85-b710-4e1b1998f248"
+  ]
+}

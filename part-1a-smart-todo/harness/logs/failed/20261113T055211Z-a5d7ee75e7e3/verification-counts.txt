@@ -1,0 +1,7 @@
+suite_checks=8
+suite_passed=7
+suite_failed=1
+quickstart_phase1_checks=21
+quickstart_phase1_failures=0
+quickstart_phase2_checks=3
+quickstart_phase2_failures=0

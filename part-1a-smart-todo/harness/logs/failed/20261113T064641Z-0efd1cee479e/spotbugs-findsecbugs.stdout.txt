@@ -1,0 +1,28 @@
+[INFO] Scanning for projects...
+[INFO] Loaded 24469 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] 
+[INFO] ---------------------< com.assignment:smart-todo >----------------------
+[INFO] Building smart-todo 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spotbugs:4.8.6.0:check (default-cli) > :spotbugs @ smart-todo >>>
+[INFO] Loaded 64 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
+[INFO] 
+[INFO] --- spotbugs:4.8.6.0:spotbugs (spotbugs) @ smart-todo ---
+[INFO] Fork Value is true
+[INFO] Done SpotBugs Analysis....
+[INFO] 
+[INFO] <<< spotbugs:4.8.6.0:check (default-cli) < :spotbugs @ smart-todo <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.8.6.0:check (default-cli) @ smart-todo ---
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  13.064 s
+[INFO] Finished at: 2026-11-13T06:47:07Z
+[INFO] ------------------------------------------------------------------------

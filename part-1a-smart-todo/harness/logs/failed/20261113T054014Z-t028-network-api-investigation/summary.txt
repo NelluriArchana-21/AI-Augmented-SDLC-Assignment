@@ -1,0 +1,6 @@
+T028 investigation and black-box verification
+NVD initial failure: transient/upstream network response indicated by HTTP 522; live NVD API probe now HTTP 200 (23.18s). No project NVD URL override was present; no Dependency-Check or CVSS policy was weakened.
+Black-box initial block: documented environment prerequisites were unset, not an API defect. Running the app loopback-only with a fresh temporary storage path allowed the script to run.
+Black-box result: 53 requests/checks, 0 failures, exit 0.
+Service: ready at http://127.0.0.1:39493, HTTP 200; stopped by SIGTERM; process and listener verified stopped. Temporary storage was empty after the suite and removed.
+Files changed outside this evidence directory: none. Original T027 and prior T028 evidence preserved. T028 remains unchecked; T029/T030 not started.

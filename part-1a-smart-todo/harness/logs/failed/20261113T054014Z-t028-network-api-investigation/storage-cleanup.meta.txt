@@ -1,0 +1,4 @@
+isolated_storage_after_suite=empty_array
+default_storage_before_and_after=absent
+removed_exact_file=/tmp/smart-todo-t028-storage.8S7WqKwm/tasks.json
+removed_exact_directory=/tmp/smart-todo-t028-storage.8S7WqKwm

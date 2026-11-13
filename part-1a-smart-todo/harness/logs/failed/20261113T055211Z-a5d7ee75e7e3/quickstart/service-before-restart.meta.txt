@@ -1,0 +1,7 @@
+mvn_pid=12508
+java_home=/usr/local/sdkman/candidates/java/21.0.13.0+2-ms
+server_address=127.0.0.1
+server_port=0
+storage_path=/tmp/smart-todo-t029-storage.kPb8Ry1X/tasks.json
+readiness_http_status=200
+port=40249

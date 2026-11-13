@@ -1,0 +1,3 @@
+timestamp_utc=20261113T053505Z
+JAVA_HOME=/usr/local/sdkman/candidates/java/21.0.13.0+2-ms
+Commands: mvn -f part-1a-smart-todo/backend/pom.xml -DskipTests compile; spotless:check; spotbugs:check; test

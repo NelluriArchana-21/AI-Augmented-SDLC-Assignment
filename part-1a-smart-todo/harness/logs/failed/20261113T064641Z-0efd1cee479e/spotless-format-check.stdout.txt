@@ -1,0 +1,17 @@
+[INFO] Scanning for projects...
+[INFO] Loaded 24469 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] 
+[INFO] ---------------------< com.assignment:smart-todo >----------------------
+[INFO] Building smart-todo 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:check (default-cli) @ smart-todo ---
+[INFO] Loaded 64 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
+[INFO] Spotless.Java is keeping 20 files clean - 0 needs changes to be clean, 0 were already clean, 20 were skipped because caching determined they were already clean
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.845 s
+[INFO] Finished at: 2026-11-13T06:46:51Z
+[INFO] ------------------------------------------------------------------------
