@@ -205,3 +205,38 @@ The human review decision recorded in `part-1a-smart-todo/harness-log.md` is
 `REJECT` because the mandatory dependency-security gate failed on findings and
 the scanner reported incomplete analyzer/database processing. The functional
 checks passed, but the Part 1A acceptance gate is not satisfied.
+
+### Dependency remediation attempt — 2026-11-22
+
+The backend POM was updated to Spring Boot 3.5.16, embedded Tomcat 10.1.62,
+Log4j 2.25.5, and Dependency-Check 12.2.2. Jackson is managed by the Boot BOM
+at 2.21.4. The Dependency-Check database was configured under the Maven
+`target` directory to ensure a new database after the plugin major-version
+upgrade. The CVSS threshold remains 0.0; no suppressions were added and no
+analyzers were disabled.
+
+The resolved dependency tree confirmed Spring Framework 6.2.19, Jackson
+2.21.4, Tomcat embedded core/el/websocket 10.1.62, Hibernate Validator
+8.0.3.Final, and Log4j API 2.25.5. The complete Maven test suite passed on
+Java 21.0.13.0.2: 40 tests, 0 failures, 0 errors, 0 skipped; `BUILD SUCCESS`.
+The application also started successfully with Tomcat 10.1.62. Port 8081 was
+already occupied, so the independent black-box validation used port 18081.
+
+Full harness evidence:
+`part-1a-smart-todo/harness/logs/failed/20261122T064001Z-a19da4c615b7/`.
+The evidence summary is valid: 8 mandatory checks, 7 passed, 1 failed. The
+environment, compilation, Spotless, SpotBugs/FindSecBugs, unit, integration,
+and black-box API checks passed. Dependency-Check 12.2.2 failed before
+vulnerability analysis because the NVD API returned HTTP 429 after 31 retries;
+the log also says no NVD API key was provided. There is no report from this
+run, so it confirms neither that candidate versions resolve the listed CVEs
+nor that the long-reference insertion errors are fixed. The scan stopped
+before those records could be tested against the widened database column.
+
+No NVD API key was configured in the environment. No `ossIndexServer` entry
+was found in Maven `settings.xml`; the earlier Dependency-Check 10.0.3 run's
+OSS Index HTTP 401 remains an unresolved authentication/coverage limitation.
+Credentials must be configured locally through supported environment or
+Maven settings mechanisms, not committed to the POM. A fresh complete scan
+with NVD update and OSS Index authentication is required. Until then, the
+remediation is partial and Part 1A remains **REJECTED**.

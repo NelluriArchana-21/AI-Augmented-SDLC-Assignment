@@ -129,6 +129,33 @@ Focused tests run during the investigation:
 `mvn -q -f part-1b-reminder-agent/backend/pom.xml
 -Dtest=GeminiProviderAdapterTest,ProviderRetryPolicyTest test` passed.
 
+## Single E01 Diagnostic — 2026-11-22
+
+One diagnostic POST was sent using the frozen E01 input. Before sending it,
+request construction was verified locally through the existing prompt builder
+and a fake transport. The API key was supplied only in the request header and
+was not included in the request body. The diagnostic made no retry and did not
+run the full evaluation.
+
+Observed timings and result:
+
+- DNS: 0.112 seconds
+- TCP: 0.005 seconds
+- TLS: 0.028 seconds
+- First response byte/status headers: 3.295 seconds
+- Total duration: 3.441 seconds
+- HTTP status: 503
+
+The response body was discarded. Response headers were not retained, so
+Retry-After, Date, Content-Type, and any request/correlation ID are unavailable.
+The request reached an HTTPS endpoint and received HTTP 503, but the response
+origin and underlying cause are unknown; this does not establish that Gemini
+itself was responsible. No source or configuration files were changed by the
+diagnostic.
+
+The live evaluation remains **INCOMPLETE** and final acceptance is pending.
+T053, T054, and T057 remain open.
+
 ## Evidence Verification Status — 2026-11-22
 
 The evidence verifier is available at `scripts/verify-evidence.sh`.

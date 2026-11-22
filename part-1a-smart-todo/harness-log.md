@@ -63,3 +63,41 @@ Reason: all seven non-Dependency-Check mandatory checks passed, but the
 mandatory security scan failed on reported dependency findings and also
 recorded analyzer/database limitations. The NVD update completed, so the latest
 blocker is not the earlier NVD 524 outage. No acceptance is claimed.
+
+## Dependency remediation attempt — 2026-11-22
+
+- POM changes: Spring Boot parent 3.3.5 → 3.5.16; `tomcat.version` 10.1.62;
+  `log4j2.version` 2.25.5; Dependency-Check plugin 10.0.3 → 12.2.2; new
+  Dependency-Check data directory under `backend/target/dependency-check-data`.
+  The Boot BOM manages Jackson at 2.21.4. The CVSS threshold remains 0.0;
+  there are no new suppressions or disabled analyzers.
+- Resolved dependency tree: Spring Framework 6.2.19, Jackson 2.21.4, embedded
+  Tomcat core/el/websocket 10.1.62, Hibernate Validator 8.0.3.Final, Log4j
+  API 2.25.5.
+- Maven test suite: Java 21.0.13.0.2; 40 tests, 0 failures, 0 errors,
+  0 skipped; `BUILD SUCCESS` (26.662 seconds).
+- Full harness run ID: `20261122T064001Z-a19da4c615b7`
+- Evidence directory:
+  `part-1a-smart-todo/harness/logs/failed/20261122T064001Z-a19da4c615b7/`
+- Summary: `VALID`; 8 checks, 7 passed, 1 failed; no blocked, timed-out,
+  errored, or skipped checks. All checks except Dependency-Check passed.
+- Dependency-Check 12.2.2 failed before analysis with NVD HTTP 429 after 31
+  retries. Its log states that no NVD API key was provided. No report was
+  produced; candidate CVE remediation and the H2 long-reference fix therefore
+  remain unverified in a complete scan.
+- OSS Index authentication remains unresolved: the previous run recorded
+  HTTP 401, and no `ossIndexServer` Maven settings entry is configured here.
+
+Assessment: dependency and scanner version updates are implemented and
+application tests plus seven other mandatory checks pass, but the mandatory
+security scan is still incomplete. Configure valid NVD and OSS Index
+credentials locally through supported mechanisms, then run a fresh complete
+scan and inspect its report. Do not treat this run as acceptance.
+
+## Final decision
+
+REJECT
+
+Reason: the latest mandatory Dependency-Check run did not complete NVD data
+update due HTTP 429, and OSS Index credentials remain unavailable. The
+application dependency changes are not security-verified by a completed scan.
