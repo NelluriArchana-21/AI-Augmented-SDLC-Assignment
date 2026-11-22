@@ -1,0 +1,337 @@
+[INFO] Scanning for projects...
+[INFO] Loaded 24571 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] 
+[INFO] ---------------------< com.assignment:smart-todo >----------------------
+[INFO] Building smart-todo 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- dependency-check:12.2.2:check (default-cli) @ smart-todo ---
+[INFO] Loaded 64 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-releases (https://maven.java.net/content/repositories/releases/): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+[INFO] Checking for updates
+[INFO] NVD API has 430,446 records in this update
+[INFO] Downloaded 10,000/430,446 (2%)
+[INFO] Downloaded 20,000/430,446 (5%)
+[INFO] Downloaded 30,000/430,446 (7%)
+[INFO] Downloaded 40,000/430,446 (9%)
+[INFO] Downloaded 50,000/430,446 (12%)
+[INFO] Downloaded 60,000/430,446 (14%)
+[INFO] Downloaded 70,000/430,446 (16%)
+[INFO] Downloaded 80,000/430,446 (19%)
+[INFO] Downloaded 90,000/430,446 (21%)
+[INFO] Downloaded 100,000/430,446 (23%)
+[INFO] Downloaded 110,000/430,446 (26%)
+[INFO] Downloaded 120,000/430,446 (28%)
+[INFO] Downloaded 130,000/430,446 (30%)
+[INFO] Downloaded 140,000/430,446 (33%)
+[INFO] Downloaded 150,000/430,446 (35%)
+[INFO] Downloaded 160,000/430,446 (37%)
+[INFO] Downloaded 170,000/430,446 (39%)
+[INFO] Downloaded 180,000/430,446 (42%)
+[INFO] Downloaded 190,000/430,446 (44%)
+[INFO] Downloaded 200,000/430,446 (46%)
+[INFO] Downloaded 210,000/430,446 (49%)
+[INFO] Downloaded 220,000/430,446 (51%)
+[INFO] Downloaded 230,000/430,446 (53%)
+[INFO] Downloaded 240,000/430,446 (56%)
+[INFO] Downloaded 250,000/430,446 (58%)
+[INFO] Downloaded 260,000/430,446 (60%)
+[INFO] Downloaded 270,000/430,446 (63%)
+[INFO] Downloaded 280,000/430,446 (65%)
+[INFO] Downloaded 290,000/430,446 (67%)
+[INFO] Downloaded 300,000/430,446 (70%)
+[INFO] Downloaded 310,000/430,446 (72%)
+[INFO] Downloaded 320,000/430,446 (74%)
+[INFO] Downloaded 330,000/430,446 (77%)
+[INFO] Downloaded 340,000/430,446 (79%)
+[INFO] Downloaded 350,000/430,446 (81%)
+[INFO] Downloaded 360,000/430,446 (84%)
+[INFO] Downloaded 370,000/430,446 (86%)
+[INFO] Downloaded 380,000/430,446 (88%)
+[INFO] Downloaded 390,000/430,446 (91%)
+[INFO] Downloaded 400,000/430,446 (93%)
+[INFO] Downloaded 410,000/430,446 (95%)
+[INFO] Downloaded 420,000/430,446 (98%)
+[INFO] Downloaded 430,000/430,446 (100%)
+[INFO] Downloaded 430,446/430,446 (100%)
+[INFO] Completed processing batch 1/216 (0%) in 8,145ms
+[INFO] Completed processing batch 2/216 (1%) in 10,155ms
+[INFO] Completed processing batch 3/216 (1%) in 12,328ms
+[INFO] Completed processing batch 4/216 (2%) in 14,250ms
+[INFO] Completed processing batch 5/216 (2%) in 17,941ms
+[INFO] Completed processing batch 6/216 (3%) in 19,247ms
+[INFO] Completed processing batch 7/216 (3%) in 21,899ms
+[INFO] Completed processing batch 8/216 (4%) in 23,726ms
+[INFO] Completed processing batch 9/216 (4%) in 26,461ms
+[INFO] Completed processing batch 10/216 (5%) in 27,619ms
+[INFO] Completed processing batch 11/216 (5%) in 29,231ms
+[INFO] Completed processing batch 12/216 (6%) in 31,045ms
+[INFO] Completed processing batch 13/216 (6%) in 32,490ms
+[INFO] Completed processing batch 14/216 (6%) in 34,390ms
+[INFO] Completed processing batch 15/216 (7%) in 35,207ms
+[INFO] Completed processing batch 16/216 (7%) in 38,342ms
+[INFO] Completed processing batch 17/216 (8%) in 41,185ms
+[INFO] Completed processing batch 18/216 (8%) in 42,612ms
+[INFO] Completed processing batch 19/216 (9%) in 46,445ms
+[INFO] Completed processing batch 20/216 (9%) in 48,064ms
+[INFO] Completed processing batch 21/216 (10%) in 50,821ms
+[INFO] Completed processing batch 22/216 (10%) in 55,240ms
+[INFO] Completed processing batch 23/216 (11%) in 63,242ms
+[INFO] Completed processing batch 24/216 (11%) in 66,074ms
+[INFO] Completed processing batch 25/216 (12%) in 70,713ms
+[INFO] Completed processing batch 26/216 (12%) in 73,210ms
+[INFO] Completed processing batch 27/216 (13%) in 78,487ms
+[INFO] Completed processing batch 28/216 (13%) in 80,765ms
+[INFO] Completed processing batch 29/216 (13%) in 81,365ms
+[INFO] Completed processing batch 30/216 (14%) in 85,532ms
+[INFO] Completed processing batch 31/216 (14%) in 86,454ms
+[INFO] Completed processing batch 32/216 (15%) in 89,942ms
+[INFO] Completed processing batch 33/216 (15%) in 89,060ms
+[INFO] Completed processing batch 34/216 (16%) in 92,333ms
+[INFO] Completed processing batch 35/216 (16%) in 90,424ms
+[INFO] Completed processing batch 36/216 (17%) in 91,482ms
+[INFO] Completed processing batch 37/216 (17%) in 91,451ms
+[INFO] Completed processing batch 38/216 (18%) in 92,209ms
+[INFO] Completed processing batch 39/216 (18%) in 91,193ms
+[INFO] Completed processing batch 40/216 (19%) in 91,191ms
+[INFO] Completed processing batch 41/216 (19%) in 91,604ms
+[INFO] Completed processing batch 42/216 (19%) in 91,565ms
+[INFO] Completed processing batch 43/216 (20%) in 91,750ms
+[INFO] Completed processing batch 44/216 (20%) in 90,751ms
+[INFO] Completed processing batch 45/216 (21%) in 91,036ms
+[INFO] Completed processing batch 46/216 (21%) in 92,185ms
+[INFO] Completed processing batch 47/216 (22%) in 91,224ms
+[INFO] Completed processing batch 48/216 (22%) in 92,193ms
+[INFO] Completed processing batch 49/216 (23%) in 90,993ms
+[INFO] Completed processing batch 50/216 (23%) in 91,435ms
+[INFO] Completed processing batch 51/216 (24%) in 91,080ms
+[INFO] Completed processing batch 52/216 (24%) in 91,074ms
+[INFO] Completed processing batch 53/216 (25%) in 90,567ms
+[INFO] Completed processing batch 54/216 (25%) in 90,900ms
+[INFO] Completed processing batch 55/216 (25%) in 90,463ms
+[INFO] Completed processing batch 56/216 (26%) in 90,523ms
+[INFO] Completed processing batch 57/216 (26%) in 90,265ms
+[INFO] Completed processing batch 58/216 (27%) in 90,439ms
+[INFO] Completed processing batch 59/216 (27%) in 90,292ms
+[INFO] Completed processing batch 60/216 (28%) in 90,119ms
+[INFO] Completed processing batch 61/216 (28%) in 90,767ms
+[INFO] Completed processing batch 62/216 (29%) in 91,228ms
+[INFO] Completed processing batch 63/216 (29%) in 91,245ms
+[INFO] Completed processing batch 64/216 (30%) in 91,321ms
+[INFO] Completed processing batch 65/216 (30%) in 91,026ms
+[INFO] Completed processing batch 66/216 (31%) in 91,177ms
+[INFO] Completed processing batch 67/216 (31%) in 90,464ms
+[INFO] Completed processing batch 68/216 (31%) in 90,343ms
+[INFO] Completed processing batch 69/216 (32%) in 89,851ms
+[INFO] Completed processing batch 70/216 (32%) in 90,407ms
+[INFO] Completed processing batch 71/216 (33%) in 89,674ms
+[INFO] Completed processing batch 72/216 (33%) in 89,953ms
+[INFO] Completed processing batch 73/216 (34%) in 88,919ms
+[INFO] Completed processing batch 74/216 (34%) in 88,898ms
+[INFO] Completed processing batch 75/216 (35%) in 88,043ms
+[INFO] Completed processing batch 76/216 (35%) in 88,947ms
+[INFO] Completed processing batch 77/216 (36%) in 87,611ms
+[INFO] Completed processing batch 78/216 (36%) in 89,948ms
+[INFO] Completed processing batch 79/216 (37%) in 89,443ms
+[INFO] Completed processing batch 80/216 (37%) in 89,367ms
+[INFO] Completed processing batch 81/216 (38%) in 88,144ms
+[INFO] Completed processing batch 82/216 (38%) in 89,983ms
+[INFO] Completed processing batch 83/216 (38%) in 89,377ms
+[INFO] Completed processing batch 84/216 (39%) in 89,943ms
+[INFO] Completed processing batch 85/216 (39%) in 88,722ms
+[INFO] Completed processing batch 86/216 (40%) in 89,321ms
+[INFO] Completed processing batch 87/216 (40%) in 88,249ms
+[INFO] Completed processing batch 88/216 (41%) in 89,126ms
+[INFO] Completed processing batch 89/216 (41%) in 88,222ms
+[INFO] Completed processing batch 90/216 (42%) in 89,346ms
+[INFO] Completed processing batch 91/216 (42%) in 88,751ms
+[INFO] Completed processing batch 92/216 (43%) in 88,713ms
+[INFO] Completed processing batch 93/216 (43%) in 89,486ms
+[INFO] Completed processing batch 94/216 (44%) in 90,653ms
+[INFO] Completed processing batch 95/216 (44%) in 91,517ms
+[INFO] Completed processing batch 96/216 (44%) in 91,252ms
+[INFO] Completed processing batch 97/216 (45%) in 91,156ms
+[INFO] Completed processing batch 98/216 (45%) in 91,197ms
+[INFO] Completed processing batch 99/216 (46%) in 91,678ms
+[INFO] Completed processing batch 100/216 (46%) in 91,572ms
+[INFO] Completed processing batch 101/216 (47%) in 91,519ms
+[INFO] Completed processing batch 102/216 (47%) in 91,567ms
+[INFO] Completed processing batch 103/216 (48%) in 90,143ms
+[INFO] Completed processing batch 104/216 (48%) in 90,141ms
+[INFO] Completed processing batch 105/216 (49%) in 90,264ms
+[INFO] Completed processing batch 106/216 (49%) in 90,195ms
+[INFO] Completed processing batch 107/216 (50%) in 89,727ms
+[INFO] Completed processing batch 108/216 (50%) in 87,048ms
+[INFO] Completed processing batch 109/216 (50%) in 87,021ms
+[INFO] Completed processing batch 110/216 (51%) in 84,846ms
+[INFO] Completed processing batch 111/216 (51%) in 81,801ms
+[INFO] Completed processing batch 112/216 (52%) in 75,854ms
+[INFO] Completed processing batch 113/216 (52%) in 70,563ms
+[INFO] Completed processing batch 114/216 (53%) in 66,727ms
+[INFO] Completed processing batch 115/216 (53%) in 61,339ms
+[INFO] Completed processing batch 116/216 (54%) in 56,249ms
+[INFO] Completed processing batch 117/216 (54%) in 56,236ms
+[INFO] Completed processing batch 118/216 (55%) in 51,598ms
+[INFO] Completed processing batch 119/216 (55%) in 51,510ms
+[INFO] Completed processing batch 120/216 (56%) in 52,009ms
+[INFO] Completed processing batch 121/216 (56%) in 47,975ms
+[INFO] Completed processing batch 122/216 (56%) in 47,525ms
+[INFO] Completed processing batch 123/216 (57%) in 47,511ms
+[INFO] Completed processing batch 124/216 (57%) in 46,477ms
+[INFO] Completed processing batch 125/216 (58%) in 44,060ms
+[INFO] Completed processing batch 126/216 (58%) in 42,622ms
+[INFO] Completed processing batch 127/216 (59%) in 42,500ms
+[INFO] Completed processing batch 128/216 (59%) in 40,027ms
+[INFO] Completed processing batch 129/216 (60%) in 39,525ms
+[INFO] Completed processing batch 130/216 (60%) in 39,008ms
+[INFO] Completed processing batch 131/216 (61%) in 39,672ms
+[INFO] Completed processing batch 132/216 (61%) in 37,903ms
+[INFO] Completed processing batch 133/216 (62%) in 39,704ms
+[INFO] Completed processing batch 134/216 (62%) in 36,371ms
+[INFO] Completed processing batch 135/216 (63%) in 35,080ms
+[INFO] Completed processing batch 136/216 (63%) in 33,787ms
+[INFO] Completed processing batch 137/216 (63%) in 33,804ms
+[INFO] Completed processing batch 138/216 (64%) in 32,566ms
+[INFO] Completed processing batch 139/216 (64%) in 32,183ms
+[INFO] Completed processing batch 140/216 (65%) in 32,043ms
+[INFO] Completed processing batch 141/216 (65%) in 31,620ms
+[INFO] Completed processing batch 142/216 (66%) in 30,332ms
+[INFO] Completed processing batch 143/216 (66%) in 30,775ms
+[INFO] Completed processing batch 144/216 (67%) in 30,343ms
+[INFO] Completed processing batch 145/216 (67%) in 29,835ms
+[INFO] Completed processing batch 146/216 (68%) in 28,448ms
+[INFO] Completed processing batch 147/216 (68%) in 28,755ms
+[INFO] Completed processing batch 148/216 (69%) in 27,337ms
+[INFO] Completed processing batch 149/216 (69%) in 27,672ms
+[INFO] Completed processing batch 150/216 (69%) in 25,992ms
+[INFO] Completed processing batch 151/216 (70%) in 26,109ms
+[INFO] Completed processing batch 152/216 (70%) in 25,093ms
+[INFO] Completed processing batch 153/216 (71%) in 25,593ms
+[INFO] Completed processing batch 154/216 (71%) in 24,989ms
+[INFO] Completed processing batch 155/216 (72%) in 24,574ms
+[INFO] Completed processing batch 156/216 (72%) in 23,610ms
+[INFO] Completed processing batch 157/216 (73%) in 23,062ms
+[INFO] Completed processing batch 158/216 (73%) in 22,101ms
+[INFO] Completed processing batch 159/216 (74%) in 22,815ms
+[INFO] Completed processing batch 160/216 (74%) in 21,064ms
+[INFO] Completed processing batch 161/216 (75%) in 21,102ms
+[INFO] Completed processing batch 162/216 (75%) in 20,752ms
+[INFO] Completed processing batch 163/216 (75%) in 20,146ms
+[INFO] Completed processing batch 164/216 (76%) in 20,769ms
+[INFO] Completed processing batch 165/216 (76%) in 19,907ms
+[INFO] Completed processing batch 166/216 (77%) in 19,456ms
+[INFO] Completed processing batch 167/216 (77%) in 18,101ms
+[INFO] Completed processing batch 168/216 (78%) in 17,971ms
+[INFO] Completed processing batch 169/216 (78%) in 17,043ms
+[INFO] Completed processing batch 170/216 (79%) in 17,832ms
+[INFO] Completed processing batch 171/216 (79%) in 17,251ms
+[INFO] Completed processing batch 172/216 (80%) in 17,505ms
+[INFO] Completed processing batch 173/216 (80%) in 16,366ms
+[INFO] Completed processing batch 174/216 (81%) in 15,787ms
+[INFO] Completed processing batch 175/216 (81%) in 14,627ms
+[INFO] Completed processing batch 176/216 (81%) in 15,197ms
+[INFO] Completed processing batch 177/216 (82%) in 13,686ms
+[INFO] Completed processing batch 178/216 (82%) in 13,189ms
+[INFO] Completed processing batch 179/216 (83%) in 12,788ms
+[INFO] Completed processing batch 180/216 (83%) in 12,841ms
+[INFO] Completed processing batch 181/216 (84%) in 11,682ms
+[INFO] Completed processing batch 182/216 (84%) in 12,635ms
+[INFO] Completed processing batch 183/216 (85%) in 10,386ms
+[INFO] Completed processing batch 184/216 (85%) in 11,330ms
+[INFO] Completed processing batch 185/216 (86%) in 12,054ms
+[INFO] Completed processing batch 186/216 (86%) in 10,366ms
+[INFO] Completed processing batch 187/216 (87%) in 9,798ms
+[INFO] Completed processing batch 188/216 (87%) in 10,063ms
+[INFO] Completed processing batch 189/216 (88%) in 10,607ms
+[INFO] Completed processing batch 190/216 (88%) in 9,924ms
+[INFO] Completed processing batch 191/216 (88%) in 9,027ms
+[INFO] Completed processing batch 192/216 (89%) in 8,874ms
+[INFO] Completed processing batch 193/216 (89%) in 7,978ms
+[INFO] Completed processing batch 194/216 (90%) in 7,133ms
+[INFO] Completed processing batch 195/216 (90%) in 7,342ms
+[INFO] Completed processing batch 196/216 (91%) in 6,068ms
+[INFO] Completed processing batch 197/216 (91%) in 5,978ms
+[INFO] Completed processing batch 198/216 (92%) in 4,687ms
+[INFO] Completed processing batch 199/216 (92%) in 4,714ms
+[INFO] Completed processing batch 200/216 (93%) in 3,785ms
+[INFO] Completed processing batch 201/216 (93%) in 2,436ms
+[INFO] Completed processing batch 202/216 (94%) in 2,353ms
+[INFO] Completed processing batch 203/216 (94%) in 870ms
+[INFO] Completed processing batch 204/216 (94%) in 783ms
+[INFO] Completed processing batch 205/216 (95%) in 148ms
+[INFO] Completed processing batch 206/216 (95%) in 445ms
+[INFO] Completed processing batch 207/216 (96%) in 288ms
+[INFO] Completed processing batch 208/216 (96%) in 168ms
+[INFO] Completed processing batch 209/216 (97%) in 251ms
+[INFO] Completed processing batch 210/216 (97%) in 1,163ms
+[INFO] Completed processing batch 211/216 (98%) in 222ms
+[INFO] Completed processing batch 212/216 (98%) in 183ms
+[INFO] Completed processing batch 213/216 (99%) in 252ms
+[INFO] Completed processing batch 214/216 (99%) in 93ms
+[INFO] Completed processing batch 215/216 (100%) in 131ms
+[INFO] Completed processing batch 216/216 (100%) in 87ms
+[INFO] Skipping Known Exploited Vulnerabilities update check since last check was within 24 hours.
+[INFO] Begin database defrag
+[INFO] End database defrag (14311 ms)
+[INFO] Check for updates complete (291028 ms)
+[INFO] 
+
+Dependency-Check is an open source tool performing a best effort analysis of 3rd party dependencies; false positives and false negatives may exist in the analysis performed by the tool. Use of the tool and the reporting provided constitutes acceptance for use in an AS IS condition, and there are NO warranties, implied or otherwise, with regard to the analysis or its use. Any use of the tool and the reporting provided is at the user's risk. In no event shall the copyright holder or OWASP be held liable for any damages whatsoever arising out of or in connection with the use of this tool, the analysis performed, or the resulting report.
+
+
+   About ODC: https://dependency-check.github.io/DependencyCheck/general/internals.html
+   False Positives: https://dependency-check.github.io/DependencyCheck/general/suppression.html
+
+
+[INFO] Analysis Started
+[INFO] Finished Archive Analyzer (0 seconds)
+[INFO] Finished File Name Analyzer (0 seconds)
+[INFO] Finished Jar Analyzer (0 seconds)
+[INFO] Finished Dependency Merging Analyzer (0 seconds)
+[INFO] Finished Hint Analyzer (0 seconds)
+[INFO] Finished Version Filter Analyzer (0 seconds)
+[INFO] Created CPE Index (3 seconds)
+[INFO] Finished CPE Analyzer (6 seconds)
+[INFO] Finished False Positive Analyzer (0 seconds)
+[INFO] Finished NVD CVE Analyzer (0 seconds)
+[WARNING] Sonatype OSS Index Analyzer disabled due to missing credentials. Authentication with token is now required, and OSS Index is migrating to Sonatype Guide. See https://dependency-check.github.io/DependencyCheck/analyzers/oss-index-analyzer.html for more information on authentication with Sonatype Guide OSS Index.
+[INFO] Finished Vulnerability Suppression Analyzer (0 seconds)
+[INFO] Finished Known Exploited Vulnerability Analyzer (0 seconds)
+[INFO] Finished Dependency Bundling Analyzer (0 seconds)
+[INFO] Finished Unused Suppression Rule Analyzer (0 seconds)
+[INFO] Analysis Complete (8 seconds)
+[INFO] Writing HTML report to: /workspaces/AI-Augmented-SDLC-Assignment/part-1a-smart-todo/backend/target/dependency-check-report.html
+[INFO] Writing JSON report to: /workspaces/AI-Augmented-SDLC-Assignment/part-1a-smart-todo/backend/target/dependency-check-report.json
+[WARNING] 
+
+One or more dependencies were identified with known vulnerabilities in smart-todo:
+
+jackson-databind-2.21.4.jar (pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.21.4, cpe:2.3:a:fasterxml:jackson-core:2.21.4:*:*:*:*:*:*:*, cpe:2.3:a:fasterxml:jackson-databind:2.21.4:*:*:*:*:*:*:*, cpe:2.3:a:fasterxml:jackson-modules-java8:2.21.4:*:*:*:*:*:*:*) : CVE-2026-54515
+spring-core-6.2.19.jar (pkg:maven/org.springframework/spring-core@6.2.19, cpe:2.3:a:pivotal_software:spring_framework:6.2.19:*:*:*:*:*:*:*, cpe:2.3:a:springsource:spring_framework:6.2.19:*:*:*:*:*:*:*, cpe:2.3:a:vmware:spring_framework:6.2.19:*:*:*:*:*:*:*) : CVE-2026-47884, CVE-2026-47890, CVE-2026-47891, CVE-2026-47892, CVE-2026-59313, CVE-2026-59283, CVE-2026-47885, CVE-2026-47886, CVE-2026-47888, CVE-2026-47889, CVE-2026-47893, CVE-2026-59282, CVE-2026-47883, CVE-2026-47887, CVE-2026-59281, CVE-2026-59280, CVE-2026-59314
+
+
+See the dependency-check report for more details.
+
+
+[INFO] ------------------------------------------------------------------------
+[ERROR] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  05:22 min
+[INFO] Finished at: 2026-11-22T11:03:07Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.owasp:dependency-check-maven:12.2.2:check (default-cli) on project smart-todo: 
+[ERROR] 
+[ERROR] One or more dependencies were identified with vulnerabilities that have a CVSS score greater than or equal to '0.0': 
+[ERROR] 
+[ERROR] jackson-databind-2.21.4.jar (pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.21.4, cpe:2.3:a:fasterxml:jackson-core:2.21.4:*:*:*:*:*:*:*, cpe:2.3:a:fasterxml:jackson-databind:2.21.4:*:*:*:*:*:*:*, cpe:2.3:a:fasterxml:jackson-modules-java8:2.21.4:*:*:*:*:*:*:*): CVE-2026-54515(5.3)
+[ERROR] spring-core-6.2.19.jar (pkg:maven/org.springframework/spring-core@6.2.19, cpe:2.3:a:pivotal_software:spring_framework:6.2.19:*:*:*:*:*:*:*, cpe:2.3:a:springsource:spring_framework:6.2.19:*:*:*:*:*:*:*, cpe:2.3:a:vmware:spring_framework:6.2.19:*:*:*:*:*:*:*): CVE-2026-47885(7.5), CVE-2026-47884(9.8), CVE-2026-47887(6.1), CVE-2026-47886(7.5), CVE-2026-47892(9.8), CVE-2026-47891(9.8), CVE-2026-47883(6.1), CVE-2026-47893(7.5), CVE-2026-47890(9.8), CVE-2026-59313(9.8), CVE-2026-59314(3.7), CVE-2026-59283(9.1), CVE-2026-47889(7.5), CVE-2026-47888(7.5), CVE-2026-59280(4.3), CVE-2026-59281(6.1), CVE-2026-59282(7.5)
+[ERROR] 
+[ERROR] See the dependency-check report for more details.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

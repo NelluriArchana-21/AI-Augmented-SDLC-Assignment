@@ -1,0 +1,17 @@
+{
+  "summary_date": "2026-11-22",
+  "summary_type": "local-surefire-test-results",
+  "source_reports": "part-1b-reminder-agent/backend/target/surefire-reports/TEST-*.xml",
+  "source_report_count": 22,
+  "java_version": "21.0.13.0.2",
+  "tests": {
+    "run": 75,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "test_result": "PASS",
+  "notes": [
+    "Overall Maven BUILD SUCCESS is not asserted; Surefire XML reports only the test results."
+  ]
+}

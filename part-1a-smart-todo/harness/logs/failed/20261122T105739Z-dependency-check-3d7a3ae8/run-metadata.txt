@@ -1,0 +1,5 @@
+Plugin: org.owasp:dependency-check-maven:12.2.2
+NVD API key passed through protected temporary Maven settings (value not recorded).
+Command: mvn -s <protected temporary settings> -Dformats=HTML,JSON -DoutputDirectory=<evidence>/reports org.owasp:dependency-check-maven:check
+The plugin wrote reports to backend/target; both generated reports were copied to evidence/reports/.
+Configured CVSS threshold and scanner configuration are unchanged.

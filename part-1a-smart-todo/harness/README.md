@@ -233,10 +233,30 @@ run, so it confirms neither that candidate versions resolve the listed CVEs
 nor that the long-reference insertion errors are fixed. The scan stopped
 before those records could be tested against the widened database column.
 
-No NVD API key was configured in the environment. No `ossIndexServer` entry
-was found in Maven `settings.xml`; the earlier Dependency-Check 10.0.3 run's
-OSS Index HTTP 401 remains an unresolved authentication/coverage limitation.
-Credentials must be configured locally through supported environment or
-Maven settings mechanisms, not committed to the POM. A fresh complete scan
-with NVD update and OSS Index authentication is required. Until then, the
-remediation is partial and Part 1A remains **REJECTED**.
+For this `20261122T064001Z` attempt, Dependency-Check 12.2.2 failed before
+analysis because the NVD API returned HTTP 429 after 31 retries. The log
+reported that no NVD API key was provided to that invocation. This was a
+separate, earlier scan attempt and did not determine the result of the later
+completed scan below. OSS Index authentication was also unavailable in the
+earlier run. No remediation result was established by that attempt.
+
+### Latest Dependency-Check scan — 2026-11-22
+
+The latest scan evidence is preserved at
+`part-1a-smart-todo/harness/logs/failed/20261122T105739Z-dependency-check-3d7a3ae8/`.
+Its HTML and JSON reports are in the `reports/` subdirectory; stdout, stderr,
+exit code, timestamps, and run metadata are also preserved.
+
+- The NVD update completed and Dependency-Check completed vulnerability
+  analysis (`Analysis Complete`).
+- The JSON report contains exactly 18 vulnerability entries across 18 unique
+  identifiers. The maximum reported CVSS is 9.8.
+- Dependency-Check exited with status `1` because findings met the configured
+  mandatory CVSS threshold of `0.0`. The threshold remains unchanged.
+- The mandatory security gate **FAILED**. The final Part 1A security decision
+  is **REJECT**.
+
+This completed analysis is distinct from the earlier `20261122T064001Z`
+attempt, which stopped during the NVD update before analysis. These scanner
+findings are not independent confirmation of exploitability, and remediation
+is not claimed complete. No clean security result or acceptance is claimed.

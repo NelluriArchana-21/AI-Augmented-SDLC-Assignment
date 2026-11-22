@@ -53,8 +53,14 @@ The local Maven test suite was run with Java 21.0.13:
 - Failures: 0
 - Errors: 0
 - Skipped: 0
-- Result: `BUILD SUCCESS`
-- Execution time: 15.587 seconds
+- Java runtime confirmed by the Surefire reports: 21.0.13
+- Preserved dated Surefire summary:
+  [`logs/passed/local-tests-20261122/surefire-summary.json`](./logs/passed/local-tests-20261122/surefire-summary.json)
+
+The summary was derived from the 22 existing Surefire XML reports. Those
+reports confirm the test counts and Java runtime, but do not independently
+record the overall Maven process result; the preserved summary therefore
+makes no `BUILD SUCCESS` claim.
 
 Manual API validation was performed against the application on port 8081.
 Each request returned HTTP 200 with a `CLARIFY` proposal:

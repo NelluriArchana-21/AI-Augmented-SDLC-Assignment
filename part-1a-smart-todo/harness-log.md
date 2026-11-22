@@ -55,7 +55,7 @@ applicable to reachable code paths; the report requires dependency/CVE review.
 The full Part 1A acceptance gate is nevertheless not satisfied because the
 mandatory scan returned exit code 1.
 
-## Final decision
+## Decision after the 2026-11-22T064001Z attempt
 
 REJECT
 
@@ -88,16 +88,37 @@ blocker is not the earlier NVD 524 outage. No acceptance is claimed.
 - OSS Index authentication remains unresolved: the previous run recorded
   HTTP 401, and no `ossIndexServer` Maven settings entry is configured here.
 
-Assessment: dependency and scanner version updates are implemented and
-application tests plus seven other mandatory checks pass, but the mandatory
-security scan is still incomplete. Configure valid NVD and OSS Index
-credentials locally through supported mechanisms, then run a fresh complete
-scan and inspect its report. Do not treat this run as acceptance.
+Assessment at the time of this attempt: dependency and scanner version updates
+were implemented and application tests plus seven other mandatory checks
+passed, but this mandatory security scan was incomplete. A fresh complete scan
+was required; this attempt was not acceptance.
 
-## Final decision
+## Decision after the 2026-11-22T064001Z attempt
 
 REJECT
 
-Reason: the latest mandatory Dependency-Check run did not complete NVD data
-update due HTTP 429, and OSS Index credentials remain unavailable. The
-application dependency changes are not security-verified by a completed scan.
+Reason: the `20261122T064001Z` mandatory Dependency-Check attempt did not
+complete its NVD data update because of HTTP 429, and OSS Index credentials
+were unavailable. This decision describes that attempt; it is separate from
+the later completed scan recorded below.
+
+## Latest standalone Dependency-Check scan — 2026-11-22
+
+- Run ID: `20261122T105739Z-dependency-check-3d7a3ae8`
+- Evidence directory:
+  `part-1a-smart-todo/harness/logs/failed/20261122T105739Z-dependency-check-3d7a3ae8/`
+- Preserved evidence includes the HTML report, JSON report, stdout, stderr,
+  exit code, start/completion timestamps, and run metadata.
+- The NVD update and vulnerability analysis completed. The JSON report
+  contains exactly 18 vulnerability entries across 18 unique identifiers,
+  with maximum CVSS 9.8.
+- Dependency-Check exited with status 1 because vulnerabilities met the
+  mandatory CVSS threshold of 0.0. The threshold is unchanged.
+- Security gate: **FAILED**.
+- Final Part 1A security decision: **REJECT**.
+
+This is a separate, later scan from the `20261122T064001Z` attempt, which
+failed during the NVD update with HTTP 429 before vulnerability analysis.
+The completed report records scanner findings; it does not establish that
+every finding is exploitable or that remediation is complete. No clean
+security result or acceptance is claimed.
