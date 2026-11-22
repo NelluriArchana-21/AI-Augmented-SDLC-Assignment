@@ -44,6 +44,33 @@ closed before Maven or the provider pipeline started. The recorded BLOCKED
 status is in
 [`logs/failed/blocked-evaluation-20261113T112629Z/blocked-summary.json`](./logs/failed/blocked-evaluation-20261113T112629Z/blocked-summary.json).
 
+## Local and Manual API Validation — 2026-11-22
+
+The local Maven test suite was run with Java 21.0.13:
+
+- Command: `mvn -f part-1b-reminder-agent/backend/pom.xml test`
+- Tests run: 75
+- Failures: 0
+- Errors: 0
+- Skipped: 0
+- Result: `BUILD SUCCESS`
+- Execution time: 15.587 seconds
+
+Manual API validation was performed against the application on port 8081.
+Each request returned HTTP 200 with a `CLARIFY` proposal:
+
+- Missing `reference_datetime`: `CLARIFY`, requesting an RFC 3339 reference
+  date/time.
+- Invalid timezone `Mars/Olympus_Mons`: `CLARIFY`, requesting a valid IANA
+  timezone.
+- Offset mismatch between `reference_datetime` and the supplied timezone:
+  `CLARIFY`, requesting a matching offset.
+
+These are local tests and manual API checks, not a live Gemini evaluation.
+They do not replace or alter the preserved November 13 validation evidence or
+the November 14 and November 22 live Gemini evaluation evidence below. The live
+evaluation remains incomplete and rejected; no acceptance is claimed.
+
 ## Initial Live Evaluation Record — 2026-11-14
 
 The initial live evaluation was executed with the configured Gemini provider.
