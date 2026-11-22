@@ -69,40 +69,58 @@ Observed results:
 
 ## T052 Failure Diagnosis
 
-The failed run was reviewed alongside `GeminiProviderAdapter`,
-`ProviderRetryPolicy`, and their focused tests.
+The initial failed run and a fresh full-run attempt were reviewed alongside
+`GeminiProviderAdapter`, `JdkGeminiTransport`, `ProviderRetryPolicy`, the frozen
+dataset, and focused tests.
 
-The adapter uses the configured model ID, sends the API key through the
-`x-goog-api-key` header, separates trusted instructions from the user request,
-and maps provider timeouts to operational timeout failures. The retry policy
-limits attempts and total duration.
+The configured model identifier appeared in Gemini's authenticated model-list
+response and advertised `generateContent`. A separate minimal
+`generateContent` smoke request timed out after 25 seconds without an HTTP
+response. The full evaluation then timed out on E01 after all three configured
+attempts. Existing focused tests for the adapter and retry policy passed. Code
+inspection and tests confirm use of the documented
+`v1beta/models/{model}:generateContent` endpoint, the `x-goog-api-key` header,
+JSON request construction with separated system/user content, and bounded
+retry behavior.
 
-The focused tests
-`GeminiProviderAdapterTest` and `ProviderRetryPolicyTest` passed on
-2026-11-14. The available evidence does not identify an application-code
-defect in the adapter or retry policy. The observed failure is a live provider
-timeout; its underlying external cause has not been established.
+Evidence establishes a generation-request timeout, but does not distinguish
+provider availability, network routing/egress, or a request-specific service
+problem. It does not establish an authentication, permission, unsupported
+model, or request-format defect. No source-code change was made because no
+application defect was demonstrated; the provider timeout's underlying cause
+remains unresolved.
 
-No source-code change was made because no evidence-linked code repair was
-justified. The initial failed run remains preserved. A complete post-repair
-evaluation and final human acceptance decision are still pending; no
-acceptance is claimed by this record.
+The initial run remains preserved. Fresh rerun evidence:
+`logs/failed/rerun-20261122T025001Z-8c4bc99536f6/`. It contains all 29 stable
+case records: E01 timed out after three attempts; E02-E25 were not evaluated
+after E01 failed; E26-E29 passed as isolated probes. No model-quality response
+was received (0/25), structural compliance was 0%, semantic aggregate was
+unavailable, invariant failures were zero, and one operational failure
+remained. This is an incomplete evaluation, not acceptance.
 
-## Evidence Verification Status — 2026-11-14
+Focused tests run during the investigation:
+`mvn -q -f part-1b-reminder-agent/backend/pom.xml
+-Dtest=GeminiProviderAdapterTest,ProviderRetryPolicyTest test` passed.
+
+## Evidence Verification Status — 2026-11-22
 
 The evidence verifier is available at `scripts/verify-evidence.sh`.
-It was executed against the preserved initial run.
+It was executed against the preserved initial run and the new rerun:
 
-The verifier confirmed:
-- 29 records and 29 unique case IDs (E01–E29).
-- Four of four isolated probes passed.
-- Zero model-quality cases produced an actual response (0/25).
-- No case-level repair links were recorded.
-- The initial run is incomplete and not accepted.
-- A full re-evaluation was not supplied, so verification returned
-  INCOMPLETE with exit code 1.
+`bash part-1b-reminder-agent/harness/scripts/verify-evidence.sh
+initial-live-20261114T034542828481570Z
+rerun-20261122T025001Z-8c4bc99536f6` returned `INCOMPLETE` (exit code 1).
+It confirmed 29 records and unique IDs in each run, four of four isolated
+probes passed, zero model-quality cases produced an actual response (0/25),
+and zero case-level repair links. It correctly rejected the rerun against the
+completion and acceptance gates: it is incomplete and not accepted, has no
+semantic aggregate, 0% structural compliance, and one unresolved operational
+failure. No secret was reported by the verifier.
 
-The initial live run remains preserved. The verifier's incomplete result
-is expected because the provider timed out and no complete post-repair
-evaluation exists. T052, T053, T054, and T057 remain unchecked.
-No acceptance is claimed.
+The model-quality evaluation remains incomplete. T052 is complete as an
+evidence-based investigation with no justified source repair; T053 and T054
+remain open because there is no complete accepted re-evaluation. T057 remains
+open for the required human decision. Recommendation: **REJECT** this evidence
+for submission because a mandatory live evaluation did not complete; the
+human reviewer retains the final decision. No acceptance record has been
+created and no acceptance is claimed.

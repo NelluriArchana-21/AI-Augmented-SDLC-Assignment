@@ -16,10 +16,10 @@ Run commands from the repository root unless a command says otherwise.
 
 The Maven project targets Java 21 (`java.version`, compiler source, and compiler
 target are all 21). The configured `environment-prerequisites` check explicitly
-requires the active `java -version` output to report Java 21. The current
-workspace reports Java 25.0.5, so that check will not pass until a Java 21
-runtime is selected. Compatibility of the Maven build and configured plugins
-under Java 25 has not been established; no result should be inferred for them.
+requires the active `java -version` output to report Java 21. A prior workspace
+inspection reported Java 25.0.5, which does not meet that prerequisite. The
+2026-11-22 validation run selected Java 21 and recorded the environment
+prerequisite as passed; compatibility under Java 25 remains unestablished.
 
 PyYAML is required even when using the default configuration. If either script
 reports that PyYAML is unavailable, install it for the Python 3 interpreter
@@ -154,27 +154,54 @@ Implemented harness components:
 - `scripts/validate-api-blackbox.sh` is present and was exercised against the
   running Spring Boot service as part of the independent API-contract check.
 
-The validation harness was run under Java 21 with the application started at
-`http://localhost:8080` and an isolated JSON storage path. The actual recorded
-outcome was a single mandatory failure in the OWASP Dependency-Check step.
+The validation harness was run on 2026-11-22 under Java 21 with the application
+started at `http://localhost:8080` and an isolated JSON storage path. All eight
+check commands terminated; seven passed and the mandatory
+OWASP Dependency-Check gate failed.
 
 ### Evidence and repair record status
 
-This workspace contains actual evidence from two independent harness runs:
+The initial and prior revalidation evidence remain preserved:
 
 - Initial evidence: `part-1a-smart-todo/harness/logs/failed/20261113T063931Z-c4d3a39ac37e/`
 - Revalidation evidence: `part-1a-smart-todo/harness/logs/failed/20261113T064641Z-0efd1cee479e/`
 
-The observed failure was not a code defect in the application itself. The
-`owasp-dependency-check` command failed during the NVD database update phase:
-`NVD Returned Status Code: 524` after `Downloaded 10,000/424,978 (2%)`.
-All application code, unit tests, integration tests, and the black-box API
-validation passed in both runs; only the dependency scan was blocked by the
-external NVD service. Because the failure is upstream to the project and not a
-repository logic error, no repository-only repair was justified in this
-environment.
+The new full-harness run is
+`part-1a-smart-todo/harness/logs/failed/20261122T025202Z-8d990ff6d57b/`.
+Its evidence summary is valid: 8 mandatory checks, 7 passed, 1 failed, with
+no blocked, timed-out, errored, or skipped checks. Environment prerequisites,
+Maven compilation, Spotless, SpotBugs/FindSecBugs, unit tests, integration
+tests, and black-box API validation all passed. Dependency-Check failed with
+exit code 1.
+
+Unlike the two earlier runs, the full NVD feed download completed at
+430,425/430,425 records. The update took about 36 minutes, but database
+ingestion had two CVE record errors, so it was not a clean update.
+Dependency-Check 10.0.3 emitted database errors for CVE-2026-6785 and CVE-2026-6786 because
+their reference URLs exceeded its `URL VARCHAR(1000)` column (reported URL
+lengths 1,585 and 1,115). It nevertheless completed analysis and generated
+`dependency-check-report.html`, preserved in the run evidence. The Sonatype
+OSS Index analyzer also reported invalid credentials and was disabled; this
+is a coverage limitation, not a passing result.
+
+The scan reported findings across eight artifact rows, containing 107 unique
+CVE identifiers, with a highest reported CVSS of 9.8. The findings include
+Hibernate Validator 8.0.1.Final, Jackson Databind 2.17.2, Log4j API 2.23.1,
+Spring Boot 3.3.5, Spring Framework 6.1.14, and Tomcat 10.1.31. Some CVEs are
+repeated across related artifacts. The raw scanner report is evidence of
+scanner findings, not independent exploitability confirmation. The gate is
+configured to fail at CVSS 0.0, and it did; no threshold was changed and no
+findings were suppressed.
+
+The original NVD 524 was an external availability failure in the earlier runs.
+In the new run the full NVD feed download was reachable, but ingestion of two
+records failed because their URLs exceeded the scanner database column width;
+the scanner's OSS Index analyzer also could not authenticate. Reported
+dependency findings independently failed the mandatory gate. No source or
+dependency versions were changed in this validation pass; the findings require
+review and remediation rather than suppression.
 
 The human review decision recorded in `part-1a-smart-todo/harness-log.md` is
-`REJECT` because the mandatory OWASP Dependency-Check gate did not complete
-successfully. This is a validation outcome based on explicit evidence and not
-an inferred assumption.
+`REJECT` because the mandatory dependency-security gate failed on findings and
+the scanner reported incomplete analyzer/database processing. The functional
+checks passed, but the Part 1A acceptance gate is not satisfied.
